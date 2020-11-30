@@ -32,14 +32,15 @@ public class Item {
     @NotNull
     int quantity;
 
+    String description;
+
     @NotNull
     Category category;
 
 
-    String description;
 
 
-    public Item(@NotEmpty String name, @Min(1) @NotEmpty double price, @Min(0) @NotNull int quantity, String description,Category category) {
+    public Item(@NotEmpty String name, @Min(1) @NotEmpty double price, @Min(0) @NotNull int quantity,Category category, String description) {
         this.name = name;
         this.price = price;
         this.quantity = quantity;

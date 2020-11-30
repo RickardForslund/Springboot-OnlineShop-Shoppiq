@@ -4,6 +4,9 @@ import com.shoppiq.entity.Item;
 import com.shoppiq.repository.ItemRepository;
 import org.springframework.stereotype.Service;
 
+import javax.ws.rs.core.Response;
+import java.util.Optional;
+
 @Service
 public class ItemService {
 
@@ -15,8 +18,17 @@ public class ItemService {
     }
 
 
-    public Item saveItem(Item item){
+    public Item saveItem(Item item) {
         return itemRepository.save(item);
+    }
+
+
+    public Iterable<Item> findAllItems() {
+        return itemRepository.findAll();
+    }
+
+    public Optional<Item> findById(Long id) {
+        return itemRepository.findById(id);
     }
 
 }
