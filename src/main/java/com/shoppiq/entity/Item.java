@@ -32,22 +32,19 @@ public class Item {
     @NotNull
     int quantity;
 
-
     @NotNull
-    Enum category;
+    Category category;
 
 
     String description;
 
 
-    public Item(@NotEmpty String name, @Min(1) @NotEmpty double price, @Min(0) @NotNull int quantity, String description,@NotNull String category) {
+    public Item(@NotEmpty String name, @Min(1) @NotEmpty double price, @Min(0) @NotNull int quantity, String description,Category category) {
         this.name = name;
         this.price = price;
         this.quantity = quantity;
         this.description = description;
-
-        this.category = Category.valueOf(category);
-
+        this.category = category;
     }
 
 
