@@ -19,7 +19,7 @@ public class OrderService {
         return orderRepository.save(order);
     }
 
-    public Iterable<Order> findAllOrder() {
+    public Iterable<Order> findAllOrders() {
         return orderRepository.findAll();
     }
 
