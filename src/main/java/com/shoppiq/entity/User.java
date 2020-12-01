@@ -16,7 +16,7 @@ import java.util.List;
 @Entity
 @EqualsAndHashCode
 @NoArgsConstructor
-public class user {
+public class User {
 
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
@@ -41,7 +41,7 @@ public class user {
     private List<Item> items;
 
 
-    public user(@NotEmpty String username, @NotEmpty String password, @NotEmpty String email, String phone, Address address) {
+    public User(@NotEmpty String username, @NotEmpty String password, @NotEmpty String email, String phone, Address address) {
         this.username = username;
         this.password = password;
         this.email = email;
