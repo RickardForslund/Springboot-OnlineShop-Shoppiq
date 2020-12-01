@@ -1,9 +1,7 @@
 package com.shoppiq.controller;
 
 import com.shoppiq.entity.Address;
-import com.shoppiq.entity.Item;
 import com.shoppiq.service.AddressService;
-import com.shoppiq.service.ItemService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;

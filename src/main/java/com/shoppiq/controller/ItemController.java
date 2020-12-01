@@ -3,7 +3,6 @@ package com.shoppiq.controller;
 import com.shoppiq.entity.Item;
 import com.shoppiq.service.ItemService;
 import org.springframework.web.bind.annotation.*;
-import javax.ws.rs.core.Response;
 import java.util.Optional;
 
 @RestController
@@ -19,8 +18,6 @@ public class ItemController {
     @PostMapping
     public Item saveItem(@RequestBody Item item) {
         return itemService.saveItem(item);
-       // var savedItem = itemService.saveItem(item);
-       // return Response.ok(savedItem).build();
     }
 
     @GetMapping

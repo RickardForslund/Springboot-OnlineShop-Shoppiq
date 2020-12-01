@@ -11,7 +11,6 @@ import javax.persistence.Id;
 import javax.validation.constraints.NotEmpty;
 import java.util.List;
 
-
 @Data
 @Entity
 @EqualsAndHashCode
@@ -31,7 +30,6 @@ public class User {
     @NotEmpty
     private String email;
 
-
     private String phone;
 
     private Address address;
@@ -40,7 +38,6 @@ public class User {
 
     private List<Item> items;
 
-
     public User(@NotEmpty String username, @NotEmpty String password, @NotEmpty String email, String phone, Address address) {
         this.username = username;
         this.password = password;
@@ -48,7 +45,6 @@ public class User {
         this.phone = phone;
         this.address = address;
     }
-
 
 }
 

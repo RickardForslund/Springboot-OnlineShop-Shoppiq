@@ -1,8 +1,6 @@
 package com.shoppiq.controller;
 
-import com.shoppiq.entity.Item;
 import com.shoppiq.entity.OrderDetails;
-import com.shoppiq.service.ItemService;
 import com.shoppiq.service.OrderDetailsService;
 import org.springframework.web.bind.annotation.*;
 

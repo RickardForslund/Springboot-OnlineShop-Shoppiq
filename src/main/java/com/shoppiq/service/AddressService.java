@@ -3,6 +3,7 @@ package com.shoppiq.service;
 import com.shoppiq.entity.Address;
 import com.shoppiq.repository.AddressRepository;
 import org.springframework.stereotype.Service;
+
 import java.util.Optional;
 
 @Service
@@ -14,11 +15,9 @@ public class AddressService {
         this.addressRepository = addressRepository;
     }
 
-
     public Address saveAddress(Address address) {
         return addressRepository.save(address);
     }
-
 
     public Iterable<Address> findAllAddress() {
         return addressRepository.findAll();
