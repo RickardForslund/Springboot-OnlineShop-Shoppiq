@@ -3,8 +3,6 @@ package com.shoppiq.service;
 import com.shoppiq.entity.Item;
 import com.shoppiq.repository.ItemRepository;
 import org.springframework.stereotype.Service;
-
-import javax.ws.rs.core.Response;
 import java.util.Optional;
 
 @Service

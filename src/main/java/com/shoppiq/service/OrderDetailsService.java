@@ -1,34 +1,35 @@
 package com.shoppiq.service;
 
 import com.shoppiq.entity.Item;
+import com.shoppiq.entity.OrderDetails;
 import com.shoppiq.repository.ItemRepository;
+import com.shoppiq.repository.OrderDetailsRepository;
 import org.springframework.stereotype.Service;
 
-import javax.ws.rs.core.Response;
 import java.util.Optional;
 
 @Service
-public class ItemService {
+public class OrderDetailsService {
 
 
-    private final ItemRepository itemRepository;
+    private final OrderDetailsRepository orderdetailsRepository;
 
-    public ItemService(ItemRepository itemRepository) {
-        this.itemRepository = itemRepository;
+    public OrderDetailsService(OrderDetailsRepository orderdetailsRepository) {
+        this.orderdetailsRepository = orderdetailsRepository;
     }
 
 
-    public Item saveItem(Item item) {
-        return itemRepository.save(item);
+    public OrderDetails saveOrderDetails(OrderDetails orderdetails) {
+        return orderdetailsRepository.save(orderdetails);
     }
 
 
-    public Iterable<Item> findAllItems() {
-        return itemRepository.findAll();
+    public Iterable<OrderDetails> findAllOrderDetails() {
+        return orderdetailsRepository.findAll();
     }
 
-    public Optional<Item> findById(Long id) {
-        return itemRepository.findById(id);
+    public Optional<OrderDetails> findById(Long id) {
+        return orderdetailsRepository.findById(id);
     }
 
 }
