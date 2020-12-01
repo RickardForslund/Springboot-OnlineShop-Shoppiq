@@ -1,2 +1,9 @@
-package com.shoppiq.repository;public class AddressRepository {
+package com.shoppiq.repository;
+
+import com.shoppiq.entity.Address;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface AddressRepository  extends CrudRepository<Address,Long> {
 }
