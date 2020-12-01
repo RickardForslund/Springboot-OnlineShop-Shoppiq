@@ -34,6 +34,8 @@ class ItemControllerTest {
     @BeforeEach
     void setUp() {
         item = new Item("Stolströja", 99, 1, Category.CLOTHES, "En tröja med ett stols märke.");
+        itemRepository.save(item);
+        itemRepository.save(item);
     }
 
     @Test
@@ -51,15 +53,6 @@ class ItemControllerTest {
 
     @Test
     void findAllItems()  throws Exception{
-
-        mockMvc.perform(post("/api/v1/item")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(item)));
-
-        mockMvc.perform(post("/api/v1/item")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(item)));
-
         mockMvc.perform(get("/api/v1/item"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[1].id").value(2))
@@ -73,7 +66,15 @@ class ItemControllerTest {
     }
 
     @Test
-    void findItemById() {
+    void findItemById() throws Exception{
+        mockMvc.perform(get("/api/v1/item/1"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("id").value(1))
+                .andExpect(jsonPath("name").value("Stolströja"))
+                .andExpect(jsonPath("price").value(99))
+                .andExpect(jsonPath("quantity").value(1))
+                .andExpect(jsonPath("category").value("CLOTHES"))
+                .andExpect(jsonPath("description").value("En tröja med ett stols märke."));
     }
 
 }
