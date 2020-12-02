@@ -45,6 +45,7 @@ class OrderDetailsControllerTest {
         orderDetailsRepository.save(orderDetails2);
     }
 
+    //TODO: This test passes, but in insomnia the Orderdetail does NOT save correctly and all fields from the passed item are returned as null
     @Test
     void saveOrderDetails() throws Exception  {
         mockMvc.perform(post("/api/v1/orderdetails")
