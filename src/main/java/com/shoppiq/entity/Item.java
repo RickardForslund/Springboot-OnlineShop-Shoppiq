@@ -5,15 +5,11 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 import java.util.Objects;
-
 
 @Data
 @Entity
@@ -26,20 +22,19 @@ public class Item {
     Long id;
 
     @NotEmpty
-    String name;
-
+    private String name;
     @Min(1)
     @NotEmpty
-    double price;
-
+    private double price;
     @Min(0)
     @NotNull
-    int quantity;
-
-    String description;
-
+    private int quantity;
+    private String description;
     @NotNull
-    Category category;
+    private Category category;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    User sellerId;
 
     public Item(@NotEmpty String name, @Min(1) @NotEmpty double price, @Min(0) @NotNull int quantity, Category category, String description) {
         this.name = name;
