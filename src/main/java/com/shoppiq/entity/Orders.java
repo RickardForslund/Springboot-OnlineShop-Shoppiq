@@ -13,7 +13,7 @@ import java.util.List;
 @Entity
 @EqualsAndHashCode
 @NoArgsConstructor
-public class Order {
+public class Orders {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -24,7 +24,7 @@ public class Order {
     @OneToMany(mappedBy = "orderId", cascade = CascadeType.PERSIST)
     private List<OrderDetails> orderDetails;
 
-    public Order(User buyer, List<OrderDetails> orderDetails) {
+    public Orders(User buyer, List<OrderDetails> orderDetails) {
         this.buyer = buyer;
         this.orderDetails = orderDetails;
     }

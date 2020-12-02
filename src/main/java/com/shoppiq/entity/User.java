@@ -28,7 +28,7 @@ public class User {
     @OneToOne(mappedBy = "resident", cascade = CascadeType.PERSIST)
     private Address address;
     @OneToMany(mappedBy = "buyer", cascade = CascadeType.PERSIST)
-    private List<Order> orders;
+    private List<Orders> orders;
     @OneToMany(mappedBy = "sellerId", cascade = CascadeType.PERSIST)
     private List<Item> items;
 

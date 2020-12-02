@@ -24,7 +24,7 @@ public class OrderDetails {
     double price;
 
     @ManyToOne()
-    Order orderId;
+    Orders orderId;
 
     public OrderDetails(Item item, @Min(1) @NotEmpty int quantity) {
         this.itemId = item.getId();
