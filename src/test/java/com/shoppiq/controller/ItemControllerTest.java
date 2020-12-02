@@ -12,7 +12,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -44,15 +43,15 @@ class ItemControllerTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(item)))
                 .andExpect(status().isOk())
-        .andExpect(jsonPath("name").value("Stolströja"))
-        .andExpect(jsonPath("price").value(99))
-        .andExpect(jsonPath("quantity").value(1))
-        .andExpect(jsonPath("category").value("CLOTHES"))
-        .andExpect(jsonPath("description").value("En tröja med ett stols märke."));
+                .andExpect(jsonPath("name").value("Stolströja"))
+                .andExpect(jsonPath("price").value(99))
+                .andExpect(jsonPath("quantity").value(1))
+                .andExpect(jsonPath("category").value("CLOTHES"))
+                .andExpect(jsonPath("description").value("En tröja med ett stols märke."));
     }
 
     @Test
-    void findAllItems()  throws Exception{
+    void findAllItems() throws Exception {
         mockMvc.perform(get("/api/v1/item"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[1].id").value(2))
@@ -66,7 +65,7 @@ class ItemControllerTest {
     }
 
     @Test
-    void findItemById() throws Exception{
+    void findItemById() throws Exception {
         mockMvc.perform(get("/api/v1/item/1"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("id").value(1))
