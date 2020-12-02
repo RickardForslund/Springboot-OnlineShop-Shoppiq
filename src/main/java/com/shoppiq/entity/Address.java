@@ -4,10 +4,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 
 @Entity
@@ -19,10 +16,12 @@ public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
     @NotEmpty
     private String country, city, streetAddress, postalCode;
     private String apartmentNumber, co;
+
+    @OneToOne
+    User resident;
 
     public Address(@NotEmpty String country, @NotEmpty String city, @NotEmpty String streetAddress, @NotEmpty String postalCode, String apartmentNumber, String co) {
         this.country = country;
