@@ -29,9 +29,11 @@ class AddressControllerTest {
 
     @BeforeEach
     void setUp() {
-        address = new Address("Sweden","Gothenburg", "Krongatan 10", "63042","10","kroingatan11");
+        var address = new Address("Sweden","Gothenburg", "Krongatan 10", "63042","10","Rickard Forslund");
+        var address2 = new Address("Sweden","Gothenburg", "Krongatan 10", "63042","10","Rickard Forslund");
         addressRepository.save(address);
-        addressRepository.save(address);
+        addressRepository.save(address2);
+        System.out.println(addressRepository.count());
     }
 
 
@@ -46,7 +48,7 @@ class AddressControllerTest {
                 .andExpect(jsonPath("streetAddress").value("Krongatan 10"))
                 .andExpect(jsonPath("postalCode").value("63042"))
                 .andExpect(jsonPath("apartmentNumber").value("10"))
-                .andExpect(jsonPath("co").value("kroingatan11"));
+                .andExpect(jsonPath("co").value("Rickard Forslund"));
 
     }
 
@@ -54,12 +56,13 @@ class AddressControllerTest {
     void findAllAddress()  throws Exception {
         mockMvc.perform(get("/api/v1/address"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$[1].country").value("Sweden"))
+                .andExpect(jsonPath("$[0].country").value("Sweden"))
                 .andExpect(jsonPath("$[0].city").value("Gothenburg"))
                 .andExpect(jsonPath("$[0].streetAddress").value("Krongatan 10"))
                 .andExpect(jsonPath("$[0].postalCode").value("63042"))
                 .andExpect(jsonPath("$[0].apartmentNumber").value("10"))
-                .andExpect(jsonPath("$[0].co").value("kroingatan11"));
+                .andExpect(jsonPath("$[0].co").value("Rickard Forslund"))
+                .andExpect(jsonPath("$[1].co").value("Rickard Forslund"));
     }
 
     @Test
@@ -71,6 +74,6 @@ class AddressControllerTest {
                 .andExpect(jsonPath("streetAddress").value("Krongatan 10"))
                 .andExpect(jsonPath("postalCode").value("63042"))
                 .andExpect(jsonPath("apartmentNumber").value("10"))
-                .andExpect(jsonPath("co").value("kroingatan11"));
+                .andExpect(jsonPath("co").value("Rickard Forslund"));
     }
 }
