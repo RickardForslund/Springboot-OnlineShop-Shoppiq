@@ -10,7 +10,7 @@ import java.util.Optional;
 @RequestMapping("/api/v1/order")
 public class OrderController {
 
-    OrderService orderService;
+    private final OrderService orderService;
 
     public OrderController(OrderService orderService) {
         this.orderService = orderService;
