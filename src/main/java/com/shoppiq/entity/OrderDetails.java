@@ -1,5 +1,6 @@
 package com.shoppiq.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -23,7 +24,8 @@ public class OrderDetails {
     int quantity;
     double price;
 
-    @ManyToOne()
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
     Orders orderId;
 
     public OrderDetails(Item item, @Min(1) @NotEmpty int quantity) {

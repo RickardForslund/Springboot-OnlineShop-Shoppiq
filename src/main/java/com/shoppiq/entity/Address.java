@@ -1,5 +1,6 @@
 package com.shoppiq.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -20,7 +21,8 @@ public class Address {
     private String country, city, streetAddress, postalCode;
     private String apartmentNumber, co;
 
-    @OneToOne
+    @JsonIgnore
+    @OneToOne(fetch = FetchType.LAZY)
     User resident;
 
     public Address(@NotEmpty String country, @NotEmpty String city, @NotEmpty String streetAddress, @NotEmpty String postalCode, String apartmentNumber, String co) {

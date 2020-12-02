@@ -1,5 +1,6 @@
 package com.shoppiq.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.shoppiq.enums.Category;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -33,6 +34,7 @@ public class Item {
     @NotNull
     private Category category;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     User sellerId;
 

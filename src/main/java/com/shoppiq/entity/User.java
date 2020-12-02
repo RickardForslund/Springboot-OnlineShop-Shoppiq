@@ -1,5 +1,6 @@
 package com.shoppiq.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -25,11 +26,14 @@ public class User {
     private String email;
     private String phone;
 
-    @OneToOne(mappedBy = "resident", cascade = CascadeType.PERSIST)
+    @JsonIgnore
+    @OneToOne(mappedBy = "resident", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     private Address address;
-    @OneToMany(mappedBy = "buyer", cascade = CascadeType.PERSIST)
+    @JsonIgnore
+    @OneToMany(mappedBy = "buyer", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     private List<Orders> orders;
-    @OneToMany(mappedBy = "sellerId", cascade = CascadeType.PERSIST)
+    @JsonIgnore
+    @OneToMany(mappedBy = "sellerId", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     private List<Item> items;
 
     public User(@NotEmpty String username, @NotEmpty String password, @NotEmpty String email, String phone, Address address) {

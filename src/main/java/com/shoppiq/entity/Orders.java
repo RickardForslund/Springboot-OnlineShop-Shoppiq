@@ -5,7 +5,6 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -21,7 +20,7 @@ public class Orders {
 
     @ManyToOne(fetch = FetchType.LAZY)
     private User buyer;
-    @OneToMany(mappedBy = "orderId", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "orderId", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     private List<OrderDetails> orderDetails;
 
     public Orders(User buyer, List<OrderDetails> orderDetails) {
