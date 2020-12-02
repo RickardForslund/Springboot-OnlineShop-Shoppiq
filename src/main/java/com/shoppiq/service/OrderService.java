@@ -1,6 +1,6 @@
 package com.shoppiq.service;
 
-import com.shoppiq.entity.Order;
+import com.shoppiq.entity.Orders;
 import com.shoppiq.repository.OrderRepository;
 import org.springframework.stereotype.Service;
 
@@ -15,15 +15,15 @@ public class OrderService {
         this.orderRepository = orderRepository;
     }
 
-    public Order saveOrder(Order order) {
+    public Orders saveOrder(Orders order) {
         return orderRepository.save(order);
     }
 
-    public Iterable<Order> findAllOrders() {
+    public Iterable<Orders> findAllOrders() {
         return orderRepository.findAll();
     }
 
-    public Optional<Order> findById(Long id) {
+    public Optional<Orders> findById(Long id) {
         return orderRepository.findById(id);
     }
 }
