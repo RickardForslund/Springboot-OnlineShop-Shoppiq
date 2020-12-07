@@ -41,11 +41,11 @@ public class SampleDataGenerator {
         var itemList = Arrays.asList(item1, item2, item3, item4, item5);
         itemRepository.saveAll(itemList);
 
-        OrderDetails orderDetails1 = new OrderDetails(item1, 1);
-        OrderDetails orderDetails2 = new OrderDetails(item2, 1);
-        OrderDetails orderDetails3 = new OrderDetails(item3, 1);
-        OrderDetails orderDetails4 = new OrderDetails(item4, 5);
-        OrderDetails orderDetails5 = new OrderDetails(item5, 2);
+        OrderDetails orderDetails1 = new OrderDetails(item1.getId(), item1.getName(),item1.getPrice(), 1);
+        OrderDetails orderDetails2 = new OrderDetails(item2.getId(), item2.getName(),item2.getPrice(), 1);
+        OrderDetails orderDetails3 = new OrderDetails(item3.getId(), item3.getName(),item3.getPrice(), 1);
+        OrderDetails orderDetails4 = new OrderDetails(item4.getId(), item3.getName(),item4.getPrice(), 5);
+        OrderDetails orderDetails5 = new OrderDetails(item5.getId(), item3.getName(),item5.getPrice(), 2);
         var orderDetailsList = Arrays.asList(orderDetails1, orderDetails2, orderDetails3, orderDetails4, orderDetails5);
         var electronicsOrderList = Arrays.asList(orderDetails1, orderDetails2);
         var clothesOrderList = Arrays.asList(orderDetails3, orderDetails4);

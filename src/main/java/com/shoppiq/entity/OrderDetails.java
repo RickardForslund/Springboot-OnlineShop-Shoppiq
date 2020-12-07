@@ -28,10 +28,11 @@ public class OrderDetails {
     @ManyToOne(fetch = FetchType.LAZY)
     Orders orderId;
 
-    public OrderDetails(Item item, @Min(1) @NotEmpty int quantity) {
-        this.itemId = item.getId();
-        this.itemName = item.getName();
+//    public OrderDetails(Item item, @Min(1) @NotEmpty int quantity) {
+    public OrderDetails(Long itemId, String itemName, double price, @Min(1) @NotEmpty int quantity) {
+        this.itemId = itemId;
+        this.itemName = itemName;
         this.quantity = quantity;
-        this.price = item.getPrice() * quantity;
+        this.price = price * quantity;
     }
 }
