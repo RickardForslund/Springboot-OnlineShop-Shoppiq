@@ -1,9 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Nerko+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300&display=swap');
+
 body {
     background-color: lightcyan;
 }
 h1 {
     color: deeppink;
+    font-family: 'Nerko One', cursive;
 }
 p {
     color: hotpink;
+    font-family: 'Noto Sans JP', sans-serif;
 }
