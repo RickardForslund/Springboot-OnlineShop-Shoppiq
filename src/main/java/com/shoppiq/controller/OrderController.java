@@ -38,4 +38,9 @@ public class OrderController {
         orderService.addOrderDetail(orderId, detailId);
     }
 
+    @PostMapping("/{orderId}/buyer/{buyerId}")
+    public void setBuyer(@PathVariable Long orderId, @PathVariable Long buyerId) {
+        orderService.setBuyer(orderId, buyerId);
+    }
+
 }

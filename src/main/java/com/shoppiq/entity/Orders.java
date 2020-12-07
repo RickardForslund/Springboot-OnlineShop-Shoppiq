@@ -43,4 +43,11 @@ public class Orders {
             orderDetails.setOrderId(this);
         }
     }
+
+    public void setBuyer(User buyer) {
+        if (buyer != null) {
+            this.buyer = buyer;
+            buyer.addOrder(this);
+        }
+    }
 }
