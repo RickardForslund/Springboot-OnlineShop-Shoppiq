@@ -51,15 +51,17 @@ class OrderControllerTest {
         Item item = new Item("Mög", 99, 1, Category.CLOTHES, "En Mög med ett stols märke.");
         itemRepository.save(item);
         OrderDetails orderDetail = new OrderDetails(item.getId(),item.getName(),item.getPrice(),1);
+        orderDetailsList.add(orderDetail);
         orderDetailsRepository.save(orderDetail);
         Address address = new Address("swe","city","street","postal","apNum","c/o");
         User user = new User("userName","password","e@mail.com","0", address);
         userRepository.save(user);
-        Orders order = new Orders(user,orderDetailsList);
+        Orders order = new Orders(user);
+        order.addOrderDetails(orderDetailsList);
         orderRepository.save(order);
     }
 
-    @Disabled
+//    @Disabled
     @Test
     void saveOrder() throws Exception { //TODO test fails. gives 400 bad request
         mockMvc.perform(post("/api/v1/order")
@@ -79,6 +81,20 @@ class OrderControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("id").value(16))
                 .andExpect(jsonPath("orderDate").value(matchesRegex("^" + dateNow +".*"))); //TODO replace date when in live environment
+    }
+
+    @Test
+    void getAllOrders() throws Exception {
+        mockMvc.perform(get("/api/v1/order"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$[0].id").value(16))
+                .andExpect(jsonPath("$[0].orderDate").value(matchesRegex("^" + LocalDate.now() +".*")))
+                .andExpect(jsonPath("$[0].buyer.id").value(1))
+                .andExpect(jsonPath("$[0].buyer.username").value("user1"))
+                .andExpect(jsonPath("$[0].buyer.password").value("pass1"))
+                .andExpect(jsonPath("$[0].buyer.email").value("user1@email.com"))
+                .andExpect(jsonPath("$[0].buyer.phone").value("0701"));
+//                .andExpect(jsonPath("$[0].orderDetails").value("")); //TODO Make sure list is not empty?
     }
 
 }

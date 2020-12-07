@@ -51,10 +51,14 @@ public class SampleDataGenerator {
         var clothesOrderList = Arrays.asList(orderDetails3, orderDetails4);
         var toysOrderList = Arrays.asList(orderDetails5);
 
-        Orders order1 = new Orders(user1, orderDetailsList);
-        Orders order2 = new Orders(user2, electronicsOrderList);
-        Orders order3 = new Orders(user3, clothesOrderList);
-        Orders order4 = new Orders(user4, toysOrderList);
+        Orders order1 = new Orders(user1);
+        Orders order2 = new Orders(user2);
+        Orders order3 = new Orders(user3);
+        Orders order4 = new Orders(user4);
+        order1.addOrderDetails(orderDetailsList);
+        order2.addOrderDetails(electronicsOrderList);
+        order3.addOrderDetails(clothesOrderList);
+        order4.addOrderDetails(toysOrderList);
         var ordersList = Arrays.asList(order1, order2, order3, order4);
         orderRepository.saveAll(ordersList);
     }

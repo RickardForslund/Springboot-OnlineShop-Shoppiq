@@ -4,8 +4,10 @@ import com.shoppiq.entity.Orders;
 import com.shoppiq.service.OrderService;
 import org.springframework.web.bind.annotation.*;
 
+import javax.transaction.Transactional;
 import java.util.Optional;
 
+@Transactional
 @RestController
 @RequestMapping("/api/v1/order")
 public class OrderController {
@@ -29,6 +31,11 @@ public class OrderController {
     @GetMapping("/{id}")
     public Optional<Orders> findOrderById(@PathVariable Long id) {
         return orderService.findById(id);
+    }
+
+    @PostMapping("/{orderId}/detail/{detailId}")
+    public void addOrderDetails(@PathVariable Long orderId, @PathVariable Long detailId) {
+        orderService.addOrderDetail(orderId, detailId);
     }
 
 }
