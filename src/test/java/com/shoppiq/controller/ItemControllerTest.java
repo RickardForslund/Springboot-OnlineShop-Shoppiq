@@ -54,26 +54,26 @@ class ItemControllerTest {
     void findAllItems() throws Exception {
         mockMvc.perform(get("/api/v1/item"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$[1].id").value(2))
-                .andExpect(jsonPath("$[0].name").value("Stolströja"))
-                .andExpect(jsonPath("$[0].price").value(99))
-                .andExpect(jsonPath("$[0].quantity").value(1))
-                .andExpect(jsonPath("$[0].category").value("CLOTHES"))
-                .andExpect(jsonPath("$[0].description").value("En tröja med ett stols märke."));
+                .andExpect(jsonPath("$[1].id").value(12))
+                .andExpect(jsonPath("$[0].name").value("TV"))
+                .andExpect(jsonPath("$[0].price").value(1999.0))
+                .andExpect(jsonPath("$[0].quantity").value(5))
+                .andExpect(jsonPath("$[0].category").value("ELECTRONICS"))
+                .andExpect(jsonPath("$[0].description").value("Very descriptive text"));
 
 
     }
 
     @Test
     void findItemById() throws Exception {
-        mockMvc.perform(get("/api/v1/item/1"))
+        mockMvc.perform(get("/api/v1/item/13"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("id").value(1))
-                .andExpect(jsonPath("name").value("Stolströja"))
-                .andExpect(jsonPath("price").value(99))
-                .andExpect(jsonPath("quantity").value(1))
+                .andExpect(jsonPath("id").value(13))
+                .andExpect(jsonPath("name").value("Jacket"))
+                .andExpect(jsonPath("price").value(499.0))
+                .andExpect(jsonPath("quantity").value(3))
                 .andExpect(jsonPath("category").value("CLOTHES"))
-                .andExpect(jsonPath("description").value("En tröja med ett stols märke."));
+                .andExpect(jsonPath("description").value("Very descriptive text"));
     }
 
 }
