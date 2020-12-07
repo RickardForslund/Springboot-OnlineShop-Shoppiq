@@ -1,6 +1,5 @@
 package com.shoppiq.service;
 
-import com.shoppiq.entity.OrderDetails;
 import com.shoppiq.entity.Orders;
 import com.shoppiq.repository.OrderDetailsRepository;
 import com.shoppiq.repository.OrderRepository;
@@ -12,6 +11,7 @@ import java.util.Optional;
 @Service
 public class OrderService {
 
+    //TODO Make a new controller to handle cross entity interactions?
     private final OrderRepository orderRepository;
     private final OrderDetailsRepository orderDetailsRepository;
     private final UserRepository userRepository;
@@ -21,15 +21,6 @@ public class OrderService {
         this.orderDetailsRepository = orderDetailsRepository;
         this.userRepository = userRepository;
     }
-
-    //    public OrderService(OrderRepository orderRepository, OrderDetailsRepository orderDetailsRepository) {
-//        this.orderRepository = orderRepository;
-//        this.orderDetailsRepository = orderDetailsRepository;
-//    }
-
-//    public OrderService(OrderRepository orderRepository) {
-//        this.orderRepository = orderRepository;
-//    }
 
     public Orders saveOrder(Orders order) {
         return orderRepository.save(order);
