@@ -43,7 +43,7 @@ class OrderControllerTest {
     @Autowired
     UserRepository userRepository;
 
-
+/*
     @BeforeEach
     void setUp() {
         //TODO test doubles
@@ -58,6 +58,8 @@ class OrderControllerTest {
         Orders order = new Orders(user,orderDetailsList);
         orderRepository.save(order);
     }
+
+ */
 
     @Disabled
     @Test
