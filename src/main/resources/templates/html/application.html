@@ -2,7 +2,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
 >
 <head>
+    <link rel="stylesheet" href="../css/default.css">
     <title>Loppis - Welcome</title>
+
 </head>
 <body>
 <h1 th:inline="text">Welcome [[${#httpServletRequest.remoteUser}]]!</h1>
