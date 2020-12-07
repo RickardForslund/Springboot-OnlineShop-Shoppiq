@@ -56,24 +56,24 @@ class AddressControllerTest {
     void findAllAddress()  throws Exception {
         mockMvc.perform(get("/api/v1/address"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].country").value("Sweden"))
-                .andExpect(jsonPath("$[0].city").value("Gothenburg"))
-                .andExpect(jsonPath("$[0].streetAddress").value("Krongatan 10"))
-                .andExpect(jsonPath("$[0].postalCode").value("63042"))
-                .andExpect(jsonPath("$[0].apartmentNumber").value("10"))
-                .andExpect(jsonPath("$[0].co").value("Rickard Forslund"))
-                .andExpect(jsonPath("$[1].co").value("Rickard Forslund"));
+                .andExpect(jsonPath("$[0].country").value("Country 1"))
+                .andExpect(jsonPath("$[0].city").value("City 1"))
+                .andExpect(jsonPath("$[0].streetAddress").value("Street 1"))
+                .andExpect(jsonPath("$[0].postalCode").value("1"))
+                .andExpect(jsonPath("$[0].apartmentNumber").value("1"))
+                .andExpect(jsonPath("$[0].co").value("none"))
+                .andExpect(jsonPath("$[1].country").value("Country 2"));
     }
 
     @Test
     void findAddressById()  throws Exception {
-        mockMvc.perform(get("/api/v1/address/1"))
+        mockMvc.perform(get("/api/v1/address/6"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("country").value("Sweden"))
-                .andExpect(jsonPath("city").value("Gothenburg"))
-                .andExpect(jsonPath("streetAddress").value("Krongatan 10"))
-                .andExpect(jsonPath("postalCode").value("63042"))
-                .andExpect(jsonPath("apartmentNumber").value("10"))
-                .andExpect(jsonPath("co").value("Rickard Forslund"));
+                .andExpect(jsonPath("country").value("Country 3"))
+                .andExpect(jsonPath("city").value("City 3"))
+                .andExpect(jsonPath("streetAddress").value("Street 3"))
+                .andExpect(jsonPath("postalCode").value("3"))
+                .andExpect(jsonPath("apartmentNumber").value("3"))
+                .andExpect(jsonPath("co").value("none"));
     }
 }
