@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -21,10 +22,25 @@ public class Orders {
     @ManyToOne(fetch = FetchType.LAZY)
     private User buyer;
     @OneToMany(mappedBy = "orderId", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
-    private List<OrderDetails> orderDetails;
+    private List<OrderDetails> orderDetails = new ArrayList<>();
 
-    public Orders(User buyer, List<OrderDetails> orderDetails) {
+    public Orders(User buyer) {
         this.buyer = buyer;
-        this.orderDetails = orderDetails;
+    }
+
+    public void addOrderDetails(List<OrderDetails> orderDetails) {
+        orderDetails.forEach(detail -> {
+            if (detail != null) {
+                this.orderDetails.add(detail);
+                detail.setOrderId(this);
+            }
+        });
+    }
+
+    public void addOrderDetails(OrderDetails orderDetails) {
+        if (orderDetails != null) {
+            this.orderDetails.add(orderDetails);
+            orderDetails.setOrderId(this);
+        }
     }
 }
