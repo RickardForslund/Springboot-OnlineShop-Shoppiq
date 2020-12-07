@@ -50,7 +50,7 @@ class OrderControllerTest {
         List<OrderDetails> orderDetailsList = new ArrayList<>();
         Item item = new Item("Mög", 99, 1, Category.CLOTHES, "En Mög med ett stols märke.");
         itemRepository.save(item);
-        OrderDetails orderDetail = new OrderDetails(item,1);
+        OrderDetails orderDetail = new OrderDetails(item.getId(),item.getName(),item.getPrice(),1);
         orderDetailsRepository.save(orderDetail);
         Address address = new Address("swe","city","street","postal","apNum","c/o");
         User user = new User("userName","password","e@mail.com","0", address);
