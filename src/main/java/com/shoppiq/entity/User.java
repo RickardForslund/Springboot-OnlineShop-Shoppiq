@@ -44,5 +44,10 @@ public class User {
         this.address = address;
     }
 
+    public void addOrder(Orders order) {
+        if (order != null)
+            orders.add(order);
+    }
+
 }
 
