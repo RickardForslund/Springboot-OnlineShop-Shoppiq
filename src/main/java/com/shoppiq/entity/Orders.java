@@ -47,7 +47,7 @@ public class Orders {
     public void setBuyer(User buyer) {
         if (buyer != null) {
             this.buyer = buyer;
-            buyer.addOrder(this);
+//            buyer.addOrder(this);
         }
     }
 }
