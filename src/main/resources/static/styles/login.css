@@ -16,6 +16,7 @@ body {
     width: 50%;
     height: 70%;
     display: grid;
+    grid-auto-rows: 20% 20% 60%;
     justify-items: center;
     align-items: center;
     background-color: lightpink;
@@ -25,7 +26,7 @@ body {
 
 #login-error-msg-holder {
     width: 100%;
-    height: 100%;
+    /*height: 100%;*/
     display: grid;
     justify-items: center;
     align-items: center;
