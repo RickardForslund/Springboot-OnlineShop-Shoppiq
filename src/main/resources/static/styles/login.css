@@ -1,5 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Nerko+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;700&display=swap');
+
 html {
     height: 100%;
+}
+
+h1 {
+    color: deeppink;
+    font-family: 'Nerko One', cursive;
+}
+p {
+    color: hotpink;
+    font-family: 'Noto Sans JP', sans-serif;
 }
 
 body {
@@ -19,9 +31,14 @@ body {
     grid-auto-rows: 20% 20% 60%;
     justify-items: center;
     align-items: center;
-    background-color: lightpink;
+    background-color: white;
     border-radius: 7px;
-    box-shadow: 0px 0px 5px 2px black;
+    box-shadow: 0px 0px 5px 2px deeppink;
+}
+#login-header{
+    margin-top: 30%;
+    font-size: 500%;
+    justify-content: flex-end;
 }
 
 #login-error-msg-holder {
@@ -43,7 +60,7 @@ body {
     color: #8a0000;
     border: 1px solid #8a0000;
     background-color: #e58f8f;
-    opacity: 50;
+    opacity: 0;
 }
 
 #error-msg-second-line {
@@ -55,7 +72,8 @@ body {
     display: grid;
     justify-items: center;
     align-items: center;
-    background-color: hotpink;
+    background-color: white;
+
 }
 
 .login-form-field::placeholder {
@@ -69,17 +87,25 @@ body {
     border-radius: 3px;
     outline: none;
     padding: 0px 0px 5px 5px;
-    background-color: deeppink;
+    background-color: white;
+    font-family: 'Noto Sans JP', sans-serif;
+
 }
 
 #login-form-submit {
-    width: 100%;
-    padding: 7px;
+    width: 80%;
+    margin: 12% 7px 7px;
+    padding-top: 5%;
+    padding-bottom: 5%;
     border: none;
     border-radius: 5px;
     color: white;
-    font-weight: bold;
-    background-color: #3a3a3a;
+    font-weight: 700;
+    background-color: hotpink;
     cursor: pointer;
     outline: none;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 150%;
+
+
 }
