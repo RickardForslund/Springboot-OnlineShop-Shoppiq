@@ -7,10 +7,20 @@ loginButton.addEventListener("click", (e) => {
     const username = loginForm.username.value;
     const password = loginForm.password.value;
 
-    if (username === "user" && password === "web_dev") {
-        alert("You have successfully logged in.");
-        window.location.href = "/home";
-    } else {
-        loginErrorMsg.style.opacity = 1;
-    }
+    fetch('http://localhost:8080/api/v1/user') // We make a get fetch    // request where users are stored
+        .then(res=>res.json())
+        .then(usersArray => {
+            let user = usersArray.find(function(user){
+                return user.username === username.value // Then we        // check if there is a user with a value given
+            })
+            if (user){
+                if (user.password === password.value){
+                    localStorage.id = user.id // If there is so, we then store
+                    alert("You have successfully logged in.");
+                    window.location.href = "/home";
+                }
+                }
+            loginErrorMsg.style.opacity = 1;
+            })
+
 })
