@@ -8,7 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
-
+//To use frontend user @Controller and to use Insomnia use @RestController
 @Controller //Frontend
 //@RestController //Insomnia
 @RequestMapping("/api/v1/item") //TODO change urls. to make it better for frontend use
@@ -33,7 +33,15 @@ public class ItemController {
         if (result.hasErrors())
             return "error";
         itemRepository.save(item);
-        return "home";
+        return "redirect:/api/v1/item/list";
+    }
+    //</editor-fold>
+
+    //<editor-fold desc="List items">
+    @GetMapping("/list")
+    public String showListItems(Model model) {
+        model.addAttribute("items", itemRepository.findAll());
+        return "list-items";
     }
     //</editor-fold>
 
