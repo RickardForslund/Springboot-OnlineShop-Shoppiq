@@ -26,7 +26,6 @@ public class User {
     private String email;
     private String phone;
 
-    @JsonIgnore
     @OneToOne(mappedBy = "resident", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     private Address address;
     @JsonIgnore
