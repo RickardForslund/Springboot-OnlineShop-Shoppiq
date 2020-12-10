@@ -10,6 +10,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.ws.rs.DefaultValue;
 import java.util.Objects;
 
 @Data
@@ -38,7 +39,7 @@ public class Item {
     @ManyToOne(fetch = FetchType.LAZY)
     User sellerId;
 
-    public Item(@NotEmpty String name, @Min(1) @NotEmpty double price, @Min(0) @NotNull int quantity, Category category, String description) {
+    public Item(@NotEmpty String name, @Min(1) @NotEmpty double price, @Min(0) @NotNull int quantity, @DefaultValue("ELECTRONICS") Category category, @DefaultValue("") String description) {
         this.name = name;
         this.price = price;
         this.quantity = quantity;
