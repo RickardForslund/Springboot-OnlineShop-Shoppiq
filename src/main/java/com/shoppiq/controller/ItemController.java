@@ -11,7 +11,7 @@ import java.util.Optional;
 
 @Controller //Frontend
 //@RestController //Insomnia
-@RequestMapping("/api/v1/item")
+@RequestMapping("/api/v1/item") //TODO change urls. to make it better for frontend use
 public class ItemController {
 
     private final ItemService itemService;
