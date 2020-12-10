@@ -2,11 +2,8 @@ package com.shoppiq.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.shoppiq.entity.Address;
-import com.shoppiq.entity.Item;
 import com.shoppiq.entity.User;
-import com.shoppiq.enums.Category;
 import com.shoppiq.repository.AddressRepository;
-import com.shoppiq.repository.ItemRepository;
 import com.shoppiq.repository.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -16,7 +13,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -25,9 +22,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 class UserControllerTest {
 
-    User user;
-    User user2;
     Address address;
+    User user;
+
     @Autowired
     MockMvc mockMvc;
     @Autowired
@@ -37,56 +34,45 @@ class UserControllerTest {
     @Autowired
     AddressRepository addressRepository;
 
-    //TODO: A problem with the adresses in BeforeEach is currently causing all tests to fail
     @BeforeEach
     void setUp() {
-        address = new Address("Sweden","Gothenburg", "Krongatan 10", "63042","10","Rickard Forslund");
-        addressRepository.save(address);
-        user = new User("Oniaon", "password123", "natalie@gmail.com","123456677889", address);
-        user2 = new User("coolkid", "awesomesauce123", "poopoo@gmail.com","987657439", address);
-        userRepository.save(user);
-        userRepository.save(user2);
+        address = new Address("Country 1", "City 1", "Street 1", "1", "1", "none");
+        user = new User("user11", "pass11", "user11@email.com", "0701", address);
     }
 
     @Test
     void saveUser() throws Exception {
-
         mockMvc.perform(post("/api/v1/user")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(user)))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("username").value("Oniaon"))
-                .andExpect(jsonPath("password").value("password123"))
-                .andExpect(jsonPath("email").value("natalie@gmail.com"));
-
-
+                .andExpect(jsonPath("id").value("25"))
+                .andExpect(jsonPath("username").value("user11"))
+                .andExpect(jsonPath("password").value("pass11"))
+                .andExpect(jsonPath("email").value("user11@email.com"));
     }
+
 
     @Test
     void findAllUser() throws Exception {
-        mockMvc.perform(post("/api/v1/user")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(user)))
+        mockMvc.perform(get("/api/v1/user"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].username").value("Oniaon"))
-                .andExpect(jsonPath("$[0].password").value("password123"))
-                .andExpect(jsonPath("$[0].email").value("natalie@gmail.com"))
-                .andExpect(jsonPath("$[1].username").value("coolkid"))
-                .andExpect(jsonPath("$[1].password").value("awesomesauce123"))
-                .andExpect(jsonPath("$[1].email").value("poopoo@gmail.com"));
-
-
+                .andExpect(jsonPath("$[0]id").value(1))
+                .andExpect(jsonPath("$[1]id").value(3))
+                .andExpect(jsonPath("$[2]id").value(5))
+                .andExpect(jsonPath("$[3]id").value(7))
+                .andExpect(jsonPath("$[4]id").value(9));
     }
-
 
     @Test
     void findUserById() throws Exception {
-        mockMvc.perform(post("/api/v1/user/1")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(user)))
+        mockMvc.perform(get("/api/v1/user/1"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("username").value("Oniaon"))
-                .andExpect(jsonPath("password").value("password123"))
-                .andExpect(jsonPath("email").value("natalie@gmail.com"));
+                .andExpect(jsonPath("id").value("1"))
+                .andExpect(jsonPath("username").value("user1"))
+                .andExpect(jsonPath("password").value("pass1"))
+                .andExpect(jsonPath("email").value("user1@email.com"))
+                .andExpect(jsonPath("phone").value("0701"));
     }
+
 }
