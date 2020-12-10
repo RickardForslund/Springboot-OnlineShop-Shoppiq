@@ -28,7 +28,7 @@ public class UserController {
 
     @GetMapping("/create")
     public String showCreateUserForm(User user) {
-        return "create-item";
+        return "registration";
     }
 
 
