@@ -26,9 +26,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class OrderDetailsControllerTest {
 
     OrderDetails orderDetails;
-    OrderDetails orderDetails2;
     Item item;
-    Item item2;
     @Autowired
     MockMvc mockMvc;
     @Autowired
@@ -36,31 +34,26 @@ class OrderDetailsControllerTest {
     @Autowired
     OrderDetailsRepository orderDetailsRepository;
 
-    /*
+
     @BeforeEach
     void setUp() {
-        item = new Item("Stolströja", 99, 1, Category.CLOTHES, "En tröja med ett stols märke.");
-        orderDetails = new OrderDetails(item.getId(),item.getName(),item.getPrice(), 3);
-        orderDetailsRepository.save(orderDetails);
-        item2 = new Item("Cat Toy", 50, 1, Category.TOYS, "A feather tied with string to a stick. Cats love it!");
-        orderDetails2 = new OrderDetails(item2.getId(),item.getName(),item.getPrice(), 5);
-        orderDetailsRepository.save(orderDetails2);
+        item = new Item("TV", 1999.00, 3, Category.ELECTRONICS, "Very descriptive text");
+        orderDetails = new OrderDetails(100L, item.getName(),item.getPrice(), 1);
     }
 
-     */
 
     //TODO: This test returns 400 instead of 200 ok
     @Test
-    @Disabled
     void saveOrderDetails() throws Exception  {
         mockMvc.perform(post("/api/v1/orderdetails")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(orderDetails)))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("itemId").value(17))
+                .andExpect(jsonPath("id").value(25))
+                .andExpect(jsonPath("itemId").value(100))
                 .andExpect(jsonPath("itemName").value("TV"))
-                .andExpect(jsonPath("quantity").value("1"))
-                .andExpect(jsonPath("price").value(1999.0));
+                .andExpect(jsonPath("price").value(1999.0))
+                .andExpect(jsonPath("quantity").value(1));
 
     }
 
