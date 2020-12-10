@@ -29,11 +29,8 @@ class AddressControllerTest {
 
     @BeforeEach
     void setUp() {
-        var address = new Address("Sweden","Gothenburg", "Krongatan 10", "63042","10","Rickard Forslund");
-        var address2 = new Address("Sweden","Gothenburg", "Krongatan 10", "63042","10","Rickard Forslund");
+        address = new Address("Country 1", "City 1", "Street 1", "1", "1", "none");
         addressRepository.save(address);
-        addressRepository.save(address2);
-        System.out.println(addressRepository.count());
     }
 
 
@@ -43,12 +40,12 @@ class AddressControllerTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(address)))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("country").value("Sweden"))
-                .andExpect(jsonPath("city").value("Gothenburg"))
-                .andExpect(jsonPath("streetAddress").value("Krongatan 10"))
-                .andExpect(jsonPath("postalCode").value("63042"))
-                .andExpect(jsonPath("apartmentNumber").value("10"))
-                .andExpect(jsonPath("co").value("Rickard Forslund"));
+                .andExpect(jsonPath("country").value("Country 1"))
+                .andExpect(jsonPath("city").value("City 1"))
+                .andExpect(jsonPath("streetAddress").value("Street 1"))
+                .andExpect(jsonPath("postalCode").value("1"))
+                .andExpect(jsonPath("apartmentNumber").value("1"))
+                .andExpect(jsonPath("co").value("none"));
 
     }
 
