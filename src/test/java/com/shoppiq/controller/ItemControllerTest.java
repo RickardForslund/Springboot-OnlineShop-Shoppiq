@@ -11,7 +11,6 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -32,7 +31,7 @@ class ItemControllerTest {
 
     @BeforeEach
     void setUp() {
-        item = new Item("Stolströja", 99, 1, Category.CLOTHES, "En tröja med ett stols märke.");
+        item = new Item("TV", 1999.00, 5, Category.ELECTRONICS, "Very descriptive text");
         itemRepository.save(item);
         itemRepository.save(item);
     }
@@ -43,25 +42,22 @@ class ItemControllerTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(item)))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("name").value("Stolströja"))
-                .andExpect(jsonPath("price").value(99))
-                .andExpect(jsonPath("quantity").value(1))
-                .andExpect(jsonPath("category").value("CLOTHES"))
-                .andExpect(jsonPath("description").value("En tröja med ett stols märke."));
+                .andExpect(jsonPath("name").value("TV"))
+                .andExpect(jsonPath("price").value(1999.00))
+                .andExpect(jsonPath("quantity").value(5))
+                .andExpect(jsonPath("category").value("ELECTRONICS"))
+                .andExpect(jsonPath("description").value("Very descriptive text"));
     }
 
     @Test
     void findAllItems() throws Exception {
         mockMvc.perform(get("/api/v1/item"))
                 .andExpect(status().isOk())
+                .andExpect(jsonPath("$[0].id").value(11))
                 .andExpect(jsonPath("$[1].id").value(12))
-                .andExpect(jsonPath("$[0].name").value("TV"))
-                .andExpect(jsonPath("$[0].price").value(1999.0))
-                .andExpect(jsonPath("$[0].quantity").value(5))
-                .andExpect(jsonPath("$[0].category").value("ELECTRONICS"))
-                .andExpect(jsonPath("$[0].description").value("Very descriptive text"));
-
-
+                .andExpect(jsonPath("$[2].id").value(13))
+                .andExpect(jsonPath("$[3].id").value(14))
+                .andExpect(jsonPath("$[4].id").value(15));
     }
 
     @Test
