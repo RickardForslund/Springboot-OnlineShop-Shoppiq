@@ -10,11 +10,11 @@
 <h1 th:inline="text">Welcome [[${#httpServletRequest.remoteUser}]]!</h1>
 <p>This is the admin console, restricted to administrators only.</p>
 <p>Please use your admin powers responsibly.</p>
-<p><form th:action="@{/api/v1/user/list}" method="get">
-    <input type="submit" value="View all users"/>
-</form><form th:action="@{/api/v1/item/list}" method="get">
+<p><form th:action="@{/api/v1/user/list}" method="get" >
+    <input type="submit" value="View all users" class="button"/> </form><form th:action="@{/api/v1/item/list}" method="get">
     <input type="submit" value="View all items" class="button"/>
-</form> </p>
+</form
+> </p>
 
 <a href="/home" class="button">
        Sign out</a>
