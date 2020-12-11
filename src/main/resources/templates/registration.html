@@ -23,6 +23,8 @@
                             <input type="text"  class="login-form-field" id="password2" placeholder="Confirm Password"> <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="text-danger"></span>
                             <input type="submit" id="login-form-submit" value="Submit!">
                 </form>
+    <p>Already have an account? <a th:href="@{/login}">Log in</a>. <br> Return to <a th:href="@{/home}">home</a>.  </p>
+    <p></p>
 
 </div>
 <!--<script type="text/javascript" th:src="@{/js/item.js}"></script> &lt;!&ndash; th:include="javascript" &ndash;&gt;-->
