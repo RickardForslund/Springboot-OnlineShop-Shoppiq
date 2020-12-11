@@ -32,6 +32,14 @@ public class UserController {
     }
 
 
+    @PostMapping("/validate")
+    public String validateUser(User user, BindingResult result, Model model) {
+        if (result.hasErrors())
+            return "error";
+        int id = 0;
+        return Integer.toString(id);
+    }
+
     @PostMapping("/add")
     public String saveUser(User user, BindingResult result, Model model) {
         if (result.hasErrors())
@@ -40,7 +48,13 @@ public class UserController {
         return "home";
     }
 
-/*
+    @GetMapping("/list")
+    public String showListItems(Model model) {
+        model.addAttribute("users", userRepository.findAll());
+        return "list-users";
+    }
+
+
     @PostMapping
     public User saveUser(@RequestBody User user) {
         return userService.saveUser(user);
@@ -51,11 +65,11 @@ public class UserController {
         return userService.findAllUsers();
     }
 
- */
 
-        @GetMapping("/{id}")
-        public Optional<User> findUserById (@PathVariable Long id){
-            return userService.findById(id);
-        }
+
+    @GetMapping("/{id}")
+    public Optional<User> findUserById (@PathVariable Long id){
+        return userService.findById(id);
+    }
 
 }

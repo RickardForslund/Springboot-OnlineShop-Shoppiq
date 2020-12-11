@@ -12,3 +12,39 @@ p {
     color: hotpink;
     font-family: 'Noto Sans JP', sans-serif;
 }
+
+.button {
+    width: 80%;
+    margin: 12% 7px 7px;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-weight: 700;
+    background-color: hotpink;
+    cursor: pointer;
+    outline: none;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 150%;
+
+
+}
+
+input[type=button], input[type=submit] {
+    width: 80%;
+    margin: 12% 7px 7px;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-weight: 700;
+    background-color: hotpink;
+    cursor: pointer;
+    outline: none;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 150%;
+
+
+}
