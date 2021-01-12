@@ -1,10 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+
+    <title></title>
+
 </head>
 <body>
-$END$
+<div class="container">
+
+    <h2>Search for items</h2>
+    <form th:object="${item}" th:action="@{/api/v1/item/search}" method="get">
+        <input type="text" name="name" id="search" th:value="${name}"/>
+        <input type="submit" value="Search"/>
+        <div th:if="${not #lists.isEmpty(search)}">
+            <h2>Item List</h2>
+            <table class="table table-striped">
+                <tr>
+                    <th>Id</th>
+                    <th>Category</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>description</th>
+                </tr>
+                <tr th:each="item: ${search}">
+                    <td><a th:text="${item.id}"  th:href="@{/api/v1/item/view/{id}(id=${item.id})}">ID</a></td>
+                    <td th:text="${item.category}">Category</td>
+                    <td th:text="${item.name}">Name</td>
+                    <td th:text="${item.price}">Price</td>
+                    <td th:text="${item.description}">Description</td>
+                </tr>
+            </table>
+        </div>
+    </form>
+</div>
 </body>
 </html>
