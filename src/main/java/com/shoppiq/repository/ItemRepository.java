@@ -10,4 +10,6 @@ public interface ItemRepository extends CrudRepository<Item,Long> {
 
     @Query("SELECT i FROM Item i WHERE i.sellerId = :id")
     Iterable<Item> findItemsBySellerId(Long id);
+
+    Iterable<Item> findItemByName(String name);
 }

@@ -26,4 +26,6 @@ public class ItemService {
     public Optional<Item> findById(Long id) {
         return itemRepository.findById(id);
     }
+
+    public Iterable<Item> findByName(String name) { return itemRepository.findItemByName(name); }
 }
