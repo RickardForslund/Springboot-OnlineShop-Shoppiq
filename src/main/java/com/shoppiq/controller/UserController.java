@@ -65,11 +65,31 @@ public class UserController {
         return userService.findAllUsers();
     }
 
-
-
     @GetMapping("/{id}")
     public Optional<User> findUserById (@PathVariable Long id){
         return userService.findById(id);
     }
+
+    @GetMapping("/view/{username}")
+    public String showUserByUsername (Model model, @PathVariable String username){
+        User user = null;
+        try {
+            user = userService.findByUsername(username).get();
+
+        } catch (Exception exception) {
+            model.addAttribute("errorMessage", "Contact not found");
+        }
+
+        model.addAttribute("user", user);
+        return "user";
+    }
+
+/*
+    @GetMapping("/findbyusername/{username}")
+    public Optional<User> findUserByUsername (@PathVariable String username){
+        return userService.findByUsername(username);
+    }
+
+ */
 
 }
