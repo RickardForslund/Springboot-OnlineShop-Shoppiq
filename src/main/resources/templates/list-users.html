@@ -35,8 +35,8 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr th:each="user : ${users}">
-                                <td th:text="${user.username}"></td>
+                            <tr  th:each="user : ${users}">
+                                <td><a th:href="@{/api/v1/user/view/{username}(username=${user.username})}" th:text="${user.username}"></a></td>
                                 <td th:text="${user.email}"></td>
                                 <td th:text="${user.password}"></td>
                                 <td th:text="${user.phone}"></td>
