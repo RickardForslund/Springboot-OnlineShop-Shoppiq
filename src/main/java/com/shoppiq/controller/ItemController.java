@@ -54,6 +54,7 @@ public class ItemController {
     }
     //</editor-fold>
 
+//    @GetMapping("/view/{id}")
     @GetMapping("/view/{id}")
     public String showItemByItemId(Model model, @PathVariable Long id) {
         Item item = null;
@@ -66,6 +67,12 @@ public class ItemController {
 
         model.addAttribute("item",item);
         return "item";
+    }
+
+    @GetMapping("/search")
+    public String searchItemByName(@RequestParam(value = "name", required = false) String name, Model model) {
+        model.addAttribute("search", itemRepository.findItemByName(name));
+        return "item-search";
     }
 
     @PostMapping("/{itemId}/set/seller/{sellerId}")
