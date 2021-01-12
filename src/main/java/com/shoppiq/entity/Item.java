@@ -37,7 +37,7 @@ public class Item {
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
-    User sellerId;
+    User sellerId; //TODO change name
 
     public Item(@NotEmpty String name, @Min(1) @NotEmpty double price, @Min(0) @NotNull int quantity, @DefaultValue("ELECTRONICS") Category category, @DefaultValue("") String description) {
         this.name = name;
