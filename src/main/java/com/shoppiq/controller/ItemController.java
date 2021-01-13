@@ -10,18 +10,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.thymeleaf.model.IModel;
 
-import javax.websocket.server.PathParam;
-import java.util.List;
 import java.util.Optional;
 
-//To use frontend use @Controller and to use Insomnia use @RestController
 @Controller //Frontend
 //@RestController //Insomnia
 @RequestMapping("/api/v1/item") //TODO change urls. to make it better for frontend use
 public class ItemController {
 
+    //<editor-fold desc="Fields and constructor">
     private final ItemService itemService;
     private final ItemRepository itemRepository;
     private final UserRepository userRepository;
@@ -31,6 +28,7 @@ public class ItemController {
         this.itemRepository = itemRepository;
         this.userRepository = userRepository;
     }
+    //</editor-fold>
 
     //<editor-fold desc="Create item">
     @GetMapping("/create")
@@ -47,15 +45,13 @@ public class ItemController {
     }
     //</editor-fold>
 
-    //<editor-fold desc="List items">
+    //<editor-fold desc="Show items all / byId">
     @GetMapping("/list")
     public String showListItems(Model model) {
         model.addAttribute("items", itemRepository.findAll());
         return "list-items";
     }
-    //</editor-fold>
 
-//    @GetMapping("/view/{id}")
     @GetMapping("/view/{id}")
     public String showItemByItemId(Model model, @PathVariable Long id) {
         Item item = null;
@@ -69,7 +65,9 @@ public class ItemController {
         model.addAttribute("item",item);
         return "item";
     }
+    //</editor-fold>
 
+    //<editor-fold desc="Search">
     @GetMapping("/search")
     public String showSearchPage() {
         return "item-search";
@@ -113,7 +111,9 @@ public class ItemController {
         }
         return "item-search";
     }
+    //</editor-fold>
 
+    //<editor-fold desc="setSellerId">
     @PostMapping("/{itemId}/set/seller/{sellerId}")
     public void setSellerId(@PathVariable Long itemId, @PathVariable Long sellerId) {
         Item item = itemRepository.findById(itemId).get();
@@ -122,7 +122,9 @@ public class ItemController {
             item.setSellerId(user);
         itemRepository.save(item);
     }
+    //</editor-fold>
 
+    //<editor-fold desc="Old methods">
     //TODO add frontend
     @GetMapping
     public Iterable<Item> findAllItems() {
@@ -134,5 +136,6 @@ public class ItemController {
     public Optional<Item> findItemById(@PathVariable Long id) {
         return itemService.findById(id);
     }
+    //</editor-fold>
 
 }
