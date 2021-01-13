@@ -2,6 +2,7 @@ package com.shoppiq.controller;
 
 import com.shoppiq.entity.Item;
 import com.shoppiq.entity.User;
+import com.shoppiq.enums.Category;
 import com.shoppiq.repository.ItemRepository;
 import com.shoppiq.repository.UserRepository;
 import com.shoppiq.service.ItemService;
@@ -70,8 +71,24 @@ public class ItemController {
     }
 
     @GetMapping("/search")
+    public String showSearchPage() {
+        return "item-search";
+    }
+
+    @GetMapping("/search/name")
     public String searchItemByName(@RequestParam(value = "name", required = false) String name, Model model) {
-        model.addAttribute("search", itemRepository.findItemByName(name));
+        model.addAttribute("search", itemRepository.findItemByNameIgnoreCase(name));
+        return "item-search";
+    }
+
+    @GetMapping("/search/category")
+    public String searchItemByCategory(@RequestParam(value = "category", required = false) String category, Model model) {
+        try {
+            var categoryEnum = Category.valueOf(category);
+            model.addAttribute("search", itemRepository.findItemByCategory(categoryEnum));
+        } catch (Exception e) {
+            System.out.println("ERROR: " + e);
+        }
         return "item-search";
     }
 
