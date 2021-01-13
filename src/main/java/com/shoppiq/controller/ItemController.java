@@ -82,10 +82,32 @@ public class ItemController {
     }
 
     @GetMapping("/search/category")
-    public String searchItemByCategory(@RequestParam(value = "category", required = false) String category, Model model) {
+    public String searchItemByCategory(Model model, @RequestParam(value = "category", required = false) String category) {
         try {
             var categoryEnum = Category.valueOf(category);
             model.addAttribute("search", itemRepository.findItemByCategoryOrderByIdDesc(categoryEnum));
+        } catch (Exception e) {
+            System.out.println("ERROR: " + e);
+        }
+        return "item-search";
+    }
+
+    @GetMapping("/search/category/asc")
+    public String searchItemByCategoryPriceAsc(Model model, @RequestParam(value = "category", required = false) String category) {
+        try {
+            var categoryEnum = Category.valueOf(category);
+            model.addAttribute("search", itemRepository.findItemByCategoryOrderByPriceAsc(categoryEnum));
+        } catch (Exception e) {
+            System.out.println("ERROR: " + e);
+        }
+        return "item-search";
+    }
+
+    @GetMapping("/search/category/desc")
+    public String searchItemByCategoryPriceDesc(Model model, @RequestParam(value = "category", required = false) String category) {
+        try {
+            var categoryEnum = Category.valueOf(category);
+            model.addAttribute("search", itemRepository.findItemByCategoryOrderByPriceDesc(categoryEnum));
         } catch (Exception e) {
             System.out.println("ERROR: " + e);
         }
