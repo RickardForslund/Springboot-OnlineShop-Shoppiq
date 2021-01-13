@@ -1,7 +1,6 @@
 package com.shoppiq.controller;
 
 import com.shoppiq.entity.Item;
-import com.shoppiq.entity.User;
 import com.shoppiq.enums.Category;
 import com.shoppiq.repository.ItemRepository;
 import com.shoppiq.repository.UserRepository;
@@ -75,7 +74,7 @@ public class ItemController {
 
     @GetMapping("/search/name")
     public String searchItemByName(@RequestParam(value = "name", required = false) String name, Model model) {
-        model.addAttribute("search", itemRepository.findItemByNameIgnoreCase(name));
+        model.addAttribute("search", itemRepository.findItemByNameContainingIgnoreCase(name));
         return "item-search";
     }
 
@@ -117,9 +116,8 @@ public class ItemController {
     @PostMapping("/{itemId}/set/seller/{sellerId}")
     public void setSellerId(@PathVariable Long itemId, @PathVariable Long sellerId) {
         Item item = itemRepository.findById(itemId).get();
-        User user = userRepository.findById(sellerId).get();
-        if (user != null)
-            item.setSellerId(user);
+        var user = userRepository.findById(sellerId);
+        user.ifPresent(item::setSellerId);
         itemRepository.save(item);
     }
     //</editor-fold>

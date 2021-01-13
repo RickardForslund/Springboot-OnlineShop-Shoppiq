@@ -27,5 +27,5 @@ public class ItemService {
         return itemRepository.findById(id);
     }
 
-    public Iterable<Item> findByName(String name) { return itemRepository.findItemByNameIgnoreCase(name); }
+    public Iterable<Item> findByName(String name) { return itemRepository.findItemByNameContainingIgnoreCase(name); }
 }
