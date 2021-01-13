@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head lang="en">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
 
-    <title></title>
+    <title>Item Search</title>
 
 </head>
 <body>
-<div class="container">
-
+<div class="container my-2">
+    <div class="card">
+        <div class="card-body">
     <h2>Search for items</h2>
     <form th:object="${item}" th:action="@{/api/v1/item/search/category}" method="get">
         <select name="category" id="category">
@@ -19,11 +22,13 @@
         </select>
         <input type="submit" value="Search by category"/>
     </form>
-    <form th:object="${item}" th:action="@{/api/v1/item/search/name}" method="get">
-        <input type="text" name="name" id="search" th:value="${name}"/>
-        <input type="submit" value="Search by name"/>
+    <input type="text" name="name" id="search" th:value="${name}"/>
+    <input type="submit" value="Search by name"/>
     </form>
-    <div th:if="${not #lists.isEmpty(search)}">
+
+    <form th:object="${item}" th:action="@{/api/v1/item/search/name}" method="get">
+
+    <div th:if="${not #lists.isEmpty(search)}" class="container my-5">
         <h2>Item List</h2>
         <table class="table table-striped">
             <tr>
@@ -31,7 +36,7 @@
                 <th>Category</th>
                 <th>Name</th>
                 <th>Price</th>
-                <th>description</th>
+                <th>Description</th>
             </tr>
             <tr th:each="item: ${search}">
                 <td><a th:text="${item.id}"  th:href="@{/api/v1/item/view/{id}(id=${item.id})}">ID</a></td>
@@ -47,5 +52,6 @@
     </div>
 
 </div>
+    </div></div>
 </body>
 </html>
