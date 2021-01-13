@@ -16,18 +16,13 @@
         <p id="login-error-msg">Invalid username <span id="error-msg-second-line">and/or password</span></p>
     </div>
 
-<!--    <form id="login-form">-->
-<!--        <input type="text" name="username" id="username-field" class="login-form-field" placeholder="Username">-->
-<!--        <input type="password" name="password" id="password-field" class="login-form-field" placeholder="Password">-->
-<!--        <input type="submit" value="Submit!" id="login-form-submit">-->
-<!--    </form>-->
-    <p>Want to make an account? Register <a th:href="@{/api/v1/user/create}">here!</a> </p>
-
-    <form th:object="${user}" th:action="@{/api/v1/user/login}" method="post">
-        <input type="text" name="username" id="username" th:value="${username}"/>
-        <input type="password" name="password" id="password" th:value="${password}"/>
-        <input type="submit" value="Login"/>
+    <form id="login-form" th:object="${user}" th:action="@{/api/v1/user/login}" method="post">
+        <input type="text" name="username" id="username" th:value="${username}"  class="login-form-field" placeholder="Username"/>
+        <input type="password" name="password" id="password" th:value="${password}"  class="login-form-field" placeholder="Password"/>
+        <input type="submit" value="Login" id="login-form-submit"/>
     </form>
+
+    <p>Want to make an account? Register <a th:href="@{/api/v1/user/create}">here!</a> </p>
 
 </main>
 </body>
