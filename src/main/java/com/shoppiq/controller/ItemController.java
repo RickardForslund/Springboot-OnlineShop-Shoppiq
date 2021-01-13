@@ -85,7 +85,7 @@ public class ItemController {
     public String searchItemByCategory(@RequestParam(value = "category", required = false) String category, Model model) {
         try {
             var categoryEnum = Category.valueOf(category);
-            model.addAttribute("search", itemRepository.findItemByCategory(categoryEnum));
+            model.addAttribute("search", itemRepository.findItemByCategoryOrderByIdDesc(categoryEnum));
         } catch (Exception e) {
             System.out.println("ERROR: " + e);
         }
