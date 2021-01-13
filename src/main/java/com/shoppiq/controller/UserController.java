@@ -11,7 +11,9 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.ws.rs.QueryParam;
 import java.util.Optional;
+import java.util.logging.Logger;
 
 //@RestController
 @Controller
@@ -89,7 +91,15 @@ public class UserController {
     public Optional<User> findUserByUsername (@PathVariable String username){
         return userService.findByUsername(username);
     }
-
- */
+*/
+    @PostMapping("/login")
+    public String login (Model model, String username, String password) {
+        var user = userRepository.findByUsernameAndPassword(username, password);
+        if (user.isPresent())
+            model.addAttribute("user",user.get());
+        else
+            System.out.println("ERROR"); //TODO make proper error
+        return "user";
+    }
 
 }
