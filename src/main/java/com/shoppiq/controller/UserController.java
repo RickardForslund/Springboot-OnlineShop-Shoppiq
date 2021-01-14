@@ -102,4 +102,10 @@ public class UserController {
         return "user";
     }
 
+    @GetMapping("/getauthenticateduser")
+    public User getAuthenticatedUser() {
+        return userService.getAuthenticatedUser();
+    }
+
+
 }
