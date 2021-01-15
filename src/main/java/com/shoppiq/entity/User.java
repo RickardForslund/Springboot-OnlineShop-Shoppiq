@@ -41,6 +41,7 @@ public class User {
         this.email = email;
         this.phone = phone;
         this.address = address;
+        address.setResident(this);
     }
 
     public void addOrder(Orders order) {
@@ -48,5 +49,19 @@ public class User {
             orders.add(order);
     }
 
+    //TODO Remove if needed and replace in usage
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", phone='" + phone + '\'' +
+                ", address=" + address.getStreetAddress() +
+                ", orders=" + orders +
+                ", items=" + items +
+                '}';
+    }
 }
 
