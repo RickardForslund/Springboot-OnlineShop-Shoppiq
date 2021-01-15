@@ -50,4 +50,15 @@ public class Orders {
 //            buyer.addOrder(this);
         }
     }
+
+    //TODO Remove if needed and replace in usage
+    @Override
+    public String toString() {
+        return "Orders{" +
+                "id=" + id +
+                ", orderDate=" + orderDate +
+                ", buyer=" + buyer.getUsername() +
+                ", orderDetails=" + orderDetails +
+                '}';
+    }
 }

@@ -30,7 +30,10 @@ public class SampleDataGenerator {
         User user3 = new User("user3", "pass3", "user3@email.com", "0703", address3);
         User user4 = new User("user4", "pass4", "user4@email.com", "0704", address4);
         User user5 = new User("user5", "pass5", "user5@email.com", "0705", address5);
-        var userList = Arrays.asList(user1, user2, user3, user4, user5);
+        User admin1 = new User("admin1", "pass1", "admin1@email.com", "0705", address1);
+        User admin2 = new User("admin2", "pass2", "admin2@email.com", "0705", address2);
+        User emily = new User("emily", "123", "emilysawesome@email.com", "0705", address3);
+        var userList = Arrays.asList(user1, user2, user3, user4, user5, admin1, admin2, emily);
         userRepository.saveAll(userList);
 
         Item item1 = new Item("TV", 1999.00, 5, Category.ELECTRONICS, "Very descriptive text");
