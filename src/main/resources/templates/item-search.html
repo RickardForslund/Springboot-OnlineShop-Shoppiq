@@ -1,37 +1,64 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head lang="en">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+          integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
 
-    <title></title>
+    <title>Item Search</title>
 
 </head>
 <body>
-<div class="container">
-
-    <h2>Search for items</h2>
-    <form th:object="${item}" th:action="@{/api/v1/item/search}" method="get">
-        <input type="text" name="name" id="search" th:value="${name}"/>
-        <input type="submit" value="Search"/>
-        <div th:if="${not #lists.isEmpty(search)}">
-            <h2>Item List</h2>
-            <table class="table table-striped">
-                <tr>
-                    <th>Id</th>
-                    <th>Category</th>
-                    <th>Name</th>
-                    <th>Price</th>
-                    <th>description</th>
-                </tr>
-                <tr th:each="item: ${search}">
-                    <td><a th:text="${item.id}"  th:href="@{/api/v1/item/view/{id}(id=${item.id})}">ID</a></td>
-                    <td th:text="${item.category}">Category</td>
-                    <td th:text="${item.name}">Name</td>
-                    <td th:text="${item.price}">Price</td>
-                    <td th:text="${item.description}">Description</td>
-                </tr>
-            </table>
+<div class="container my-2">
+    <div class="card">
+        <div class="card-body">
+            <h2>Search for items</h2>
+            <form th:object="${item}" th:action="@{/api/v1/item/search/category}" method="get">
+                <select name="category" id="category">
+                    <option value="" selected>Category</option>
+                    <!--            <option th:value="Category" selected disabled hidden></option>-->
+                    <option th:value="ELECTRONICS">Electronics</option>
+                    <option th:value="TOYS">Toys</option>
+                    <option th:value="CLOTHES">Clothes</option>
+                </select>
+                <input type="submit" value="Search by category"/>
+            </form>
+            <form th:object="${item}" th:action="@{/api/v1/item/search/name}" method="get">
+                <input type="text" name="name" id="search" th:value="${name}"/>
+                <input type="submit" value="Search by name"/>
+            </form>
+            <div th:if="${not #lists.isEmpty(search)}" class="container my-5">
+                <h2>Item List</h2>
+                <table class="table table-striped">
+                    <tr>
+                        <th>Id</th>
+                        <th>Category</th>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Description</th>
+                    </tr>
+                    <tr th:each="item: ${search}">
+                        <td><a th:text="${item.id}" th:href="@{/api/v1/item/view/{id}(id=${item.id})}">ID</a></td>
+                        <td><a th:text="${item.category}"
+                               th:href="@{/api/v1/item/search/category(category=${item.category})}">Category</a>
+                        </td>
+                        <td><a th:text="${item.name}"
+                               th:href="@{/api/v1/item/view/{id}(id=${item.id})}">Name</a>
+                        </td>
+                        <!--                        <td th:text="${item.name}">Name</td>-->
+                        <td th:text="${item.price}">Price</td>
+                        <td th:text="${item.description}">Description</td>
+                    </tr>
+                </table>
+            </div>
+            <div th:if="${#lists.isEmpty(search)}">
+                <a>No items to display. Please type in your search</a>
+            </div>
+            <a th:href="@{/home}" class="btn btn-primary">Back to Home</a>
+            <a th:href="@{/api/v1/item/create}" class="btn btn-primary">Add item</a>
         </div>
-    </form>
+    </div>
 </div>
 </body>
 </html>
