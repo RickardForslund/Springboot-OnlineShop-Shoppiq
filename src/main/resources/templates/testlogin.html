@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
-
+<html lang="en">
 <head>
     <link rel="stylesheet" th:href="@{/styles/main-style.css}">
-    <script defer th:src="@{/js/application.js}"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="UTF-8">
+    <title>Login</title>
 
 
+<!--    <link rel="stylesheet" th:href="@{/styles/login.css}">-->
+<!--    <script defer th:src="@{/js/login.js}"></script>-->
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
@@ -17,22 +18,34 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
-</head>
 
+
+</head>
+<body>
 <div th:replace="fragments/top-navbar :: navbar">
 </div>
 
-<div th:insert="~{fragments/main-page :: main-page}">...</div>
 
+<div>
+
+    <main id="main-holder">
+        <h1 id="login-header">Login</h1>
+
+        <div id="login-error-msg-holder">
+            <p id="login-error-msg">Invalid username <span id="error-msg-second-line">and/or password</span></p>
+        </div>
+
+        <form id="login-form">
+            <input type="text" name="username" id="username-field" class="login-form-field" placeholder="Username">
+            <input type="password" name="password" id="password-field" class="login-form-field" placeholder="Password">
+            <input type="submit" value="Submit!" id="login-form-submit">
+        </form>
+        <p>Want to make an account? Register <a th:href="@{/api/v1/user/create}">here!</a> </p>
+
+    </main>
+
+</div>
 
 <div th:insert="~{fragments/footer :: bottom-text}">...</div>
-
 </body>
 </html>
-
-
-
-
-
-
-
