@@ -1,6 +1,6 @@
 ## Shoppiq Online Marketplace
 Java EE assignment | JU19 | ITHS
-Made in winter 2020/2021 by Emily Inns, Christoffer Clausen and Rickard.
+Made in winter 2020/2021 by Emily Inns, Christoffer Clausen and Rickard Forslund.
 
 To access this project please run the Spring Boot application (ShoppiqApplication) and use the web interface. 
 By default this is found at localhost:8080/ or localhost:8080/home.
