@@ -59,4 +59,14 @@ public class Item {
                 Objects.equals(description, item.description) &&
                 category == item.category;
     }
+
+    @Override
+    public String toString() {
+        return name + '\t' +
+                price + '\t' +
+                '\b' +
+                quantity + '\t' +
+                "PostalNr" + description + '\t' +
+                "AptNr" + category;
+    }
 }

@@ -35,4 +35,16 @@ public class OrderDetails {
         this.quantity = quantity;
         this.price = price * quantity;
     }
+
+    @Override
+    public String toString() {
+        return "OrderDetails{" +
+                "id=" + id +
+                ", itemId=" + itemId +
+                ", itemName='" + itemName + '\'' +
+                ", quantity=" + quantity +
+                ", price=" + price +
+                ", orderId=" + orderId.getId() +
+                '}';
+    }
 }

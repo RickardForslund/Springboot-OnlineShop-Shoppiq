@@ -31,6 +31,7 @@
                                 <th>Password</th>
                                 <th>Phone number</th>
                                 <th>Address</th>
+                                <th>Items</th>
 
                             </tr>
                             </thead>
@@ -41,6 +42,9 @@
                                 <td th:text="${user.password}"></td>
                                 <td th:text="${user.phone}"></td>
                                 <td th:text="${user.address}"></td>
+                                <td th:each="item : ${user.items}">
+                                    <a th:text="a + ${item}"> </a>
+                                </td>
                                 <!--                                <td><a th:href="@{/students/edit/{id}(id=${student.id})}" class="btn btn-primary"><i class="fas fa-user-edit ml-2"></i></a></td>-->
                                 <!--                                <td><a th:href="@{/students/delete/{id}(id=${student.id})}" class="btn btn-primary"><i class="fas fa-user-times ml-2"></i></a></td>-->
                             </tr>

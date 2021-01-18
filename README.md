@@ -6,7 +6,6 @@ To access this project please run the Spring Boot application (ShoppiqApplicatio
 By default this is found at localhost:8080/ or localhost:8080/home.
 
 ### Item Endpoints
-To view all items, go to `/api/v1/item/list`
 
 To create an item, go to `/api/v1/item/create`
 
@@ -16,9 +15,24 @@ The item search page uses the item endpoints `/search/category`, `/search/catego
 
 To view an item, click on it's ID from the list or search screen, or go to `/api/v1/item/view/{id}`
 
+To view all items, go to `/api/v1/item/list` (Requires ADMIN)
+
 ### User Endpoints
 To create a user, go to `/api/v1/user/create`
 
 To log in, go to `/login` which calls upon UserRepository.findByUsernameAndPassword
 
 To view a user, click on it's name from the list screen, or go to `/api/v1/user/view/{name}`
+
+To view all users, go to `/api/v1/user/list` (Requires ADMIN)
+
+###Security
+
+In accordance to our projects security structure, some webpages and endpoints are reserved for users of the appropriate clearance.
+
+Without logging into an account, you can only access `/home`, `/login` and `/api/v1/user/create` to register and log into an account.
+
+Created accounts are automatically assigned to the AuthGroup USER, giving them access to most of the projects pages and endpoints. Users can
+upload and search through items as well as view item and user pages.
+
+Accounts in the AuthGroup ADMIN have access to all pages and endpoints, including the `/admin` console and the list pages `/api/v1/item/list` and `/api/v1/user/list`

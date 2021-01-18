@@ -33,4 +33,15 @@ public class Address {
         this.apartmentNumber = apartmentNumber;
         this.co = co;
     }
+
+    //TODO Remove if needed and replace in usage
+    @Override
+    public String toString() {
+        return country + '\t' +
+                city + '\t' +
+                '\b' +
+                streetAddress + '\t' +
+                "PostalNr" + postalCode + '\t' +
+                "AptNr" + apartmentNumber;
+    }
 }
