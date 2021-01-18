@@ -36,7 +36,7 @@ public class Item {
     private Category category;
 
     @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     User sellerId; //TODO change name
 
     public Item(@NotEmpty String name, @Min(1) @NotEmpty double price, @Min(0) @NotNull int quantity, @DefaultValue("ELECTRONICS") Category category, @DefaultValue("") String description) {
@@ -62,11 +62,11 @@ public class Item {
 
     @Override
     public String toString() {
-        return name + '\t' +
-                price + '\t' +
+        return "Product: " + name + '\t' +
+                "Price: " + price + '\t' +
                 '\b' +
-                quantity + '\t' +
-                "PostalNr" + description + '\t' +
-                "AptNr" + category;
+                "Quantity: " + quantity + '\t' +
+                "Description: " + description + '\t' +
+                "Category: " + category;
     }
 }
