@@ -1,7 +1,6 @@
 package com.shoppiq.jms.service;
 
 import com.shoppiq.entity.*;
-import com.shoppiq.jms.model.Employee;
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -19,11 +18,6 @@ public class RabbitMQSender {
     @Value("${javainuse.rabbitmq.routingkey}")
     private String routingkey;
 
-    public void send(Employee company) {
-        rabbitTemplate.convertAndSend(exchange, routingkey, company);
-        System.out.println("Send msg = " + company);
-
-    }
 
     public void send(Item item) {
         rabbitTemplate.convertAndSend(exchange, routingkey, item);

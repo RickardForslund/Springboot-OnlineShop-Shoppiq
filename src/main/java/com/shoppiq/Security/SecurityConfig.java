@@ -1,6 +1,5 @@
 package com.shoppiq.Security;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -9,17 +8,10 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.authority.GrantedAuthoritiesContainer;
 import org.springframework.security.core.authority.mapping.GrantedAuthoritiesMapper;
 import org.springframework.security.core.authority.mapping.SimpleAuthorityMapper;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.authentication.logout.HeaderWriterLogoutHandler;
-import org.springframework.security.web.header.writers.ClearSiteDataHeaderWriter;
-
-import javax.servlet.http.Cookie;
-
-import static org.springframework.security.web.header.writers.ClearSiteDataHeaderWriter.Directive.*;
 
 @Configuration
 @EnableWebSecurity
@@ -83,65 +75,3 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 }
-
-
-//
-//    private static final ClearSiteDataHeaderWriter.Directive[] SOURCE =
-//            {CACHE, COOKIES, STORAGE, EXECUTION_CONTEXTS};
-//
-//    @Autowired
-//    public void configureGlobal(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
-//        authenticationManagerBuilder
-//                .inMemoryAuthentication()
-//                .withUser("admin")
-//                .password(passwordEncoder().encode("adminpass"))
-//                .roles("ADMIN")
-//                .and()
-//                .withUser("user")
-//                .password(passwordEncoder().encode("userpass"))
-//                .roles("USER");
-//    }
-//
-//    @Override
-//    protected void configure(HttpSecurity http) throws Exception {
-//        http
-//                .csrf().disable();
-//        http
-//                .httpBasic()
-//                .and()
-//                .authorizeRequests()
-////                .antMatchers("/admin/**")
-////                .hasRole("ADMIN")
-////                .antMatchers("api/v1/user/**", "/login/**")
-////                .hasRole("USER")
-//                .anyRequest()
-//                .permitAll();
-//        http
-//                .logout(logout -> logout
-//                        .logoutUrl("/logout/v1")
-//                        .addLogoutHandler(((request, response, authentication) -> {
-//                            for (Cookie cookie : request.getCookies()) {
-//                                String cookieName = cookie.getName();
-//                                Cookie cookieToDelete = new Cookie(cookieName, null);
-//                                cookieToDelete.setMaxAge(0);
-//                                response.addCookie(cookieToDelete);
-//                            }
-//                        }))
-//                        .logoutSuccessUrl("/home")
-//                );
-//        http
-//                .logout(logout -> logout
-//                        .logoutUrl("logout/v2")
-//                        .addLogoutHandler(new HeaderWriterLogoutHandler(new ClearSiteDataHeaderWriter(SOURCE)))
-//                );
-//    }
-//
-//    @Override
-//    public void configure(WebSecurity web) throws Exception {
-//        web
-//                .ignoring()
-//                .antMatchers("/h2-console/**");
-//    }
-//
-//
-//}
