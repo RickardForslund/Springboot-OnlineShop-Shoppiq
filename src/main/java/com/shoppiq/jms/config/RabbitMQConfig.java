@@ -1,4 +1,4 @@
-package com.shoppiq.jms;
+package com.shoppiq.jms.config;
 
 
 import org.springframework.amqp.core.AmqpTemplate;
@@ -48,7 +48,7 @@ public class RabbitMQConfig {
 
 
     @Bean
-    public AmqpTemplate rabbitTemplate(ConnectionFactory connectionFactory) {
+    public AmqpTemplate rabbitTemplates(ConnectionFactory connectionFactory) {
         final RabbitTemplate rabbitTemplate = new RabbitTemplate(connectionFactory);
         rabbitTemplate.setMessageConverter(jsonMessageConverter());
         return rabbitTemplate;
