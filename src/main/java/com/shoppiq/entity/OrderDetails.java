@@ -36,6 +36,20 @@ public class OrderDetails {
         this.price = price * quantity;
     }
 
+    public OrderDetails(@NotEmpty Item item, @Min(1) @NotEmpty int quantity) {
+        this.itemId = item.getId();
+        this.itemName = item.getName();
+        this.quantity = quantity;
+        this.price = item.getPrice() * quantity;
+    }
+
+    public OrderDetails(@NotEmpty Item item, @Min(1) @NotEmpty String quantity) {
+        this.itemId = item.getId();
+        this.itemName = item.getName();
+        this.quantity = Integer.parseInt(quantity);
+        this.price = item.getPrice() * Integer.parseInt(quantity);
+    }
+
     @Override
     public String toString() {
         return "OrderDetails{" +

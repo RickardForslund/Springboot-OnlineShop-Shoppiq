@@ -50,11 +50,17 @@
                         <td th:text="${item.description}">...</td>
                     </tr>
 
-
                 </table>
 
                 <br/><br/>
-                <a th:href="@{/buy}" class="btn btn-primary">Buy</a>
+<!--
+
+                <form action="#" th:object="${orderDetails}" th:action="@{/api/v1/orderdetails/add}"  method="post">
+                    <input type="text" th:field="*{quantity}"  class="login-form-field" id="username" placeholder="Username">
+                    <input type="submit" id="login-form-submit" value="Submit!">
+                </form>
+-->
+
                 <a th:href="@{/home}" class="btn btn-primary">Back to Home</a>
             </div>
         </div>
