@@ -32,7 +32,7 @@ public class User {
     @OneToMany(mappedBy = "buyer", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     private List<Orders> orders;
     @JsonIgnore
-    @OneToMany(mappedBy = "sellerId", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "sellerId", cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
     private List<Item> items;
 
     public User(@NotEmpty String username, @NotEmpty String password, @NotEmpty String email, String phone, Address address) {
@@ -44,9 +44,31 @@ public class User {
         address.setResident(this);
     }
 
+    public User(@NotEmpty String username, @NotEmpty String password, @NotEmpty String email, String phone, Address address, List<Item> itemsForSale) {
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.phone = phone;
+        this.address = address;
+        address.setResident(this);
+
+        for (Item item:itemsForSale
+        ) {item.setSellerId(this);
+        }
+        this.items = itemsForSale;
+    }
+
     public void addOrder(Orders order) {
         if (order != null)
             orders.add(order);
+    }
+
+    public void addItem(Item item) {
+        if (item != null){
+            items.add(item);
+            item.setSellerId(this);
+        }
+
     }
 
     //TODO Remove if needed and replace in usage
