@@ -5,6 +5,14 @@ Made in winter 2020/2021 by Emily Inns, Christoffer Clausen and Rickard Forslund
 To access this project please run the Spring Boot application (ShoppiqApplication) and use the web interface. 
 By default this is found at localhost:8080/ or localhost:8080/home.
 
+### Run instructions
+
+Run this app, and the secondary jms app at the same time.
+
+Start an instance of RabbitMQ server in docker using:
+````
+docker run -it --rm --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:3-management
+````
 ### Item Endpoints
 
 To create an item, go to `/api/v1/item/create`
