@@ -39,20 +39,21 @@ public class SampleDataGenerator {
         Item item4 = new Item("Socks", 49.00, 20, Category.CLOTHES, "A pair of colourful socks");
         Item item5 = new Item("LEGO", 299.00, 25, Category.TOYS, "A classic childrens toy");
         Item item6 = new Item("Doll", 30.00, 10, Category.TOYS, "A handmade cloth doll");
-        var itemList = Arrays.asList(item1, item2, item3, item4, item5, item6);
-        itemRepository.saveAll(itemList);
 
         var items1 = Arrays.asList(item1, item2);
-        var items2 = Arrays.asList(item6, item3, item5);
-        var items3 = Arrays.asList(item4);
+        var items2 = Arrays.asList(item6, item3);
+        var items3 = Arrays.asList(item4, item5);
 
         User user1 = new User("user1", "pass1", "user1@email.com", "0701", address1, items1);
         User user2 = new User("user2", "pass2", "user2@email.com", "0702", address2);
         User user3 = new User("user3", "pass3", "user3@email.com", "0703", address3, items2);
         User user4 = new User("user4", "pass4", "user4@email.com", "0704", address4);
-        User user5 = new User("user5", "pass5", "user5@email.com", "0705", address5);
+        User user5 = new User("user5", "pass5", "user5@email.com", "0705", address5, items3);
         User admin = new User("admin", "adminpass", "admin@email.com", "0706", address6);
         User emily = new User("emily", "123", "emilysawesome@email.com", "0705",address7);
+
+        var itemList = Arrays.asList(item1, item2, item3, item4, item5, item6);
+        itemRepository.saveAll(itemList);
 
         authGroupRepository.save(new AuthGroup(admin.getUsername(), "ADMIN"));
         authGroupRepository.save(new AuthGroup(emily.getUsername(), "ADMIN"));
