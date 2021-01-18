@@ -1,6 +1,7 @@
 package com.shoppiq.service;
 
 import com.shoppiq.entity.Item;
+import com.shoppiq.enums.Category;
 import com.shoppiq.repository.ItemRepository;
 import org.springframework.stereotype.Service;
 
@@ -28,4 +29,20 @@ public class ItemService {
     }
 
     public Iterable<Item> findByName(String name) { return itemRepository.findItemByNameContainingIgnoreCase(name); }
+
+    public Object findItemByNameContainingIgnoreCase(String name) {
+        return itemRepository.findItemByNameContainingIgnoreCase(name);
+    }
+
+    public Object findItemByCategoryOrderByIdDesc(Category categoryEnum) {
+        return itemRepository.findItemByCategoryOrderByIdDesc(categoryEnum);
+    }
+
+    public Object findItemByCategoryOrderByPriceAsc(Category categoryEnum) {
+        return itemRepository.findItemByCategoryOrderByPriceAsc(categoryEnum);
+    }
+
+    public Object findItemByCategoryOrderByPriceDesc(Category categoryEnum) {
+        return itemRepository.findItemByCategoryOrderByPriceDesc(categoryEnum);
+    }
 }

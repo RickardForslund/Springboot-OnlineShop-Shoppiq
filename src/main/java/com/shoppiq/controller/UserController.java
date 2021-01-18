@@ -1,31 +1,27 @@
 package com.shoppiq.controller;
 
-import com.shoppiq.entity.Item;
 import com.shoppiq.entity.User;
-import com.shoppiq.repository.ItemRepository;
-import com.shoppiq.repository.UserRepository;
-import com.shoppiq.service.ItemService;
+import com.shoppiq.service.AuthGroupService;
 import com.shoppiq.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import javax.ws.rs.QueryParam;
 import java.util.Optional;
-import java.util.logging.Logger;
 
 //@RestController
 @Controller
 @RequestMapping("/api/v1/user")
 public class UserController {
 
-    private final UserRepository userRepository;
+    //TODO move functionality to Service
     private final UserService userService;
+    private final AuthGroupService authGroupService;
 
-    public UserController(UserService userService, UserRepository userRepository) {
+    public UserController(UserService userService, AuthGroupService authGroupService) {
         this.userService = userService;
-        this.userRepository = userRepository;
+        this.authGroupService = authGroupService;
     }
 
     @GetMapping("/create")
@@ -46,20 +42,21 @@ public class UserController {
     public String saveUser(User user, BindingResult result, Model model) {
         if (result.hasErrors())
             return "error";
-        userRepository.save(user);
+        authGroupService.save(user.getUsername(), "USER");
+        userService.save(user);
         return "home";
     }
 
     @GetMapping("/list")
     public String showListItems(Model model) {
-        model.addAttribute("users", userRepository.findAll());
+        model.addAttribute("users", userService.findAllUsers());
         return "list-users";
     }
 
-
     @PostMapping
     public User saveUser(@RequestBody User user) {
-        return userService.saveUser(user);
+        authGroupService.save(user.getUsername(), "USER");
+        return userService.save(user);
     }
 
     @GetMapping
@@ -68,12 +65,12 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public Optional<User> findUserById (@PathVariable Long id){
+    public Optional<User> findUserById(@PathVariable Long id) {
         return userService.findById(id);
     }
 
     @GetMapping("/view/{username}")
-    public String showUserByUsername (Model model, @PathVariable String username){
+    public String showUserByUsername(Model model, @PathVariable String username) {
         User user = null;
         try {
             user = userService.findByUsername(username).get();
@@ -86,19 +83,19 @@ public class UserController {
         return "user";
     }
 
-/*
-    @GetMapping("/findbyusername/{username}")
-    public Optional<User> findUserByUsername (@PathVariable String username){
-        return userService.findByUsername(username);
-    }
-*/
+    /*
+        @GetMapping("/findbyusername/{username}")
+        public Optional<User> findUserByUsername (@PathVariable String username){
+            return userService.findByUsername(username);
+        }
+    */
     @PostMapping("/login")
-    public String login (Model model, String username, String password) {
-        var user = userRepository.findByUsernameAndPassword(username, password);
+    public String login(Model model, String username, String password) {
+        var user = userService.findByUsernameAndPassword(username, password);
         if (user.isPresent())
-            model.addAttribute("user",user.get());
+            model.addAttribute("user", user.get());
         else
-            System.out.println("ERROR"); //TODO make proper error
+            System.out.println("No user found"); //TODO make proper error
         return "user";
     }
 

@@ -15,7 +15,9 @@
     <input type="submit" value="View all items" class="button"/>
 </form
 > </p>
-
+<form th:action="@{logout}" method="post">
+    <input type="submit" value="Sign out">
+</form>
 <a href="/home" class="button">
        Sign out</a>
 </body>

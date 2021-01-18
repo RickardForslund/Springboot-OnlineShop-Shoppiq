@@ -31,7 +31,7 @@ public class User {
     @JsonIgnore
     @OneToMany(mappedBy = "buyer", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     private List<Orders> orders;
-    @JsonIgnore
+//    @JsonIgnore
     @OneToMany(mappedBy = "sellerId", cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
     private List<Item> items;
 
@@ -51,11 +51,10 @@ public class User {
         this.phone = phone;
         this.address = address;
         address.setResident(this);
-
-        for (Item item:itemsForSale
-        ) {item.setSellerId(this);
-        }
         this.items = itemsForSale;
+        this.items.forEach(item -> {
+            item.setSellerId(this);
+        });
     }
 
     public void addOrder(Orders order) {
@@ -64,7 +63,7 @@ public class User {
     }
 
     public void addItem(Item item) {
-        if (item != null){
+        if (item != null) {
             items.add(item);
             item.setSellerId(this);
         }

@@ -5,24 +5,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" th:href="@{/styles/login.css}">
-<!--    <script defer th:src="@{/js/login.js}"></script>-->
+    <!--    <script defer th:src="@{/js/login.js}"></script>-->
 </head>
 
 <body>
 <main id="main-holder">
     <h1 id="login-header">Login</h1>
 
-    <div id="login-error-msg-holder">
-        <p id="login-error-msg">Invalid username <span id="error-msg-second-line">and/or password</span></p>
-    </div>
+    <!--    <div th:if="${param.error}">-->
+    <!--        Invalid username and/or password-->
+    <!--    </div>-->
+    <!--    <div th:if="${param.logout}">-->
+    <!--        You have been logged out-->
+    <!--    </div>-->
 
-    <form id="login-form" th:object="${user}" th:action="@{/api/v1/user/login}" method="post">
-        <input type="text" name="username" id="username" th:value="${username}"  class="login-form-field" placeholder="Username"/>
-        <input type="password" name="password" id="password" th:value="${password}"  class="login-form-field" placeholder="Password"/>
-        <input type="submit" value="Login" id="login-form-submit"/>
+
+    <!--    <div id="login-error-msg-holder">-->
+    <!--        <p id="login-error-msg">Invalid username <span id="error-msg-second-line">and/or password</span></p>-->
+    <!--    </div>-->
+
+    <form id="login-form" th:action="@{/login}" method="post">
+        <div><label> Username : <input type="text" name="username" id="username" class="login-form-field"
+                                       placeholder="Username"/> </label></div>
+        <div><label> Password: <input type="password" name="password" id="password" class="login-form-field"
+                                      placeholder="Username"/> </label></div>
+        <input type="submit" value="Sign In" id="login-form-submit"/>
     </form>
+    <a th:href="@{/home}" class="btn btn-primary">Back to Home</a>
 
-    <p>Want to make an account? Register <a th:href="@{/api/v1/user/create}">here!</a> </p>
+    <!--    <form id="login-form" th:object="${user}" th:action="@{/api/v1/user/login}" method="post">-->
+    <!--        <input type="text" name="username" id="username" th:value="${username}"  class="login-form-field" placeholder="Username"/>-->
+    <!--        <input type="password" name="password" id="password" th:value="${password}"  class="login-form-field" placeholder="Password"/>-->
+    <!--        <input type="submit" value="Login" id="login-form-submit"/>-->
+    <!--    </form>-->
+
+    <p>Want to make an account? Register <a th:href="@{/api/v1/user/create}">here!</a></p>
 
 </main>
 </body>
