@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Confirm Purchase</title>
+    <link rel="stylesheet" th:href="@{/styles/default.css}">
+</head>
+<body>
+<h1>Please confirm your purchase</h1>
+<div class="container my-5" th:if="${orderDetails}">
+    <tr>
+        <td><b>Seller :</b></td>
+
+        <td th:text="${orderDetails.item.sellerId}">...</td>
+    </tr>
+
+    <tr>
+        <td><b>Item : </b></td>
+
+        <td th:text="${orderDetails.itemName}">...</td>
+    </tr>
+    <tr>
+        <td><b>Quantity :</b></td>
+
+        <td th:text="${orderDetails.quantity}">...</td>
+    </tr>
+
+    <tr>
+        <td><b>Total Price :</b> </td>
+        <td th:text="${orderDetails.price}">...</td>
+    </tr>
+
+</div>
+</body>
+</html>
