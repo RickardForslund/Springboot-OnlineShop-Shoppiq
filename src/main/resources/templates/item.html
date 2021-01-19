@@ -61,13 +61,11 @@
 
                 <br/><br/>
 
-                <!--
-                <form action="#" th:object="${orderDetails}" th:action="@{/api/v1/orderdetails/add}"  method="post">
-                    <input type="text" th:field="*{quantity}"  class="login-form-field" id="username" placeholder="Username">
-                    <input type="hidden" th:value="${item}" th:attr="name='item'"/>
+                <form action="#" th:action="@{/api/v1/orderdetails/add}"  method="post">
+                    <input type="number" th:object="${Integer}" th:attr="name='quantity'"  class="login-form-field" id="quantity" placeholder="quantity">
+                    <input type="hidden" th:object="${item}" th:attr="name='item'"/>
                     <input type="submit" id="login-form-submit" value="Submit!">
                 </form>
--->
 
                 <a th:href="@{/home}" class="btn btn-primary">Back to Home</a>
             </div>
