@@ -32,6 +32,10 @@ public class ShoppiqUserPrincipal implements UserDetails {
         return grantedAuthorities;
     }
 
+    public User getUser() {
+        return user;
+    }
+
     @Override
     public String getPassword() {
         return this.user.getPassword();

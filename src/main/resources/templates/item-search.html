@@ -37,6 +37,7 @@
                         <th>Name</th>
                         <th>Price</th>
                         <th>Description</th>
+                        <th>Seller</th>
                     </tr>
                     <tr th:each="item: ${search}">
                         <td><a th:text="${item.id}" th:href="@{/api/v1/item/view/{id}(id=${item.id})}">ID</a></td>
@@ -49,6 +50,7 @@
                         <!--                        <td th:text="${item.name}">Name</td>-->
                         <td th:text="${item.price}">Price</td>
                         <td th:text="${item.description}">Description</td>
+                        <td> <a th:href="@{/api/v1/user/view/{username}(username=${item.sellerId.username})}" th:text="${item.sellerId.username}"></a></td>
                     </tr>
                 </table>
             </div>

@@ -51,7 +51,9 @@
 
         <tr>
             <td><b>Items for sale :</b></td>
-            <td>List items here eventually</td>
+            <td th:each="item : ${user.items}">
+                <a th:href="@{/api/v1/item/view/{id}(id=${item.id})}" th:text="${item.name}"></a>
+            </td>
 
         </tr>
 

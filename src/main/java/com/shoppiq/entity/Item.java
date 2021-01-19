@@ -35,7 +35,7 @@ public class Item {
     @NotNull
     private Category category;
 
-    @JsonIgnore
+ //   @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     User sellerId; //TODO change name
 
@@ -45,6 +45,15 @@ public class Item {
         this.quantity = quantity;
         this.description = description;
         this.category = category;
+    }
+
+    public Item(@NotEmpty String name, @Min(1) @NotEmpty double price, @Min(0) @NotNull int quantity, @DefaultValue("ELECTRONICS") Category category, @DefaultValue("") String description, User sellerId) {
+        this.name = name;
+        this.price = price;
+        this.quantity = quantity;
+        this.description = description;
+        this.category = category;
+        this.sellerId = sellerId;
     }
 
     @Override
