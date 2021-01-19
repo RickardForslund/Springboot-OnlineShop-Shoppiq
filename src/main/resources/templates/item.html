@@ -51,19 +51,22 @@
                     </tr>
 
                     <tr>
-                        <td><b>Seller : </b></td>
-                        <td> <a th:href="@{/api/v1/user/view/{username}(username=${item.sellerId.username})}" th:text="${item.sellerId.username}"></a></td>
+                        <td><b>In stock : </b></td>
+                        <td th:text="${item.quantity}">...</td>
                     </tr>
-
-                    <input type="hidden" th:value="${item}" th:attr="name='item'"/>
 
                 </table>
 
                 <br/><br/>
 
                 <form action="#" th:action="@{/api/v1/orderdetails/add}"  method="post">
-                    <input type="number" th:object="${Integer}" th:attr="name='quantity'"  class="login-form-field" id="quantity" placeholder="quantity">
-                    <input type="hidden" th:object="${item}" th:attr="name='item'"/>
+                    <input type="number" th:object="${Integer}" th:attr="name='quantity'" class="login-form-field" id="quantity" placeholder="quantity">
+                    <input type="hidden" th:object="${Item}" th:value="${item.getId()}" th:attr="name='id'" class="login-form-field" id="item"/>
+                    <input type="hidden" th:object="${Item}" th:value="${item.getCategory()}" th:attr="name='category'" class="login-form-field" id="item"/>
+                    <input type="hidden" th:object="${Item}" th:value="${item.getName()}" th:attr="name='name'" class="login-form-field" id="item"/>
+                    <input type="hidden" th:object="${Item}" th:value="${item.getDescription()}" th:attr="name='description'" class="login-form-field" id="item"/>
+                    <input type="hidden" th:object="${Item}" th:value="${item.getPrice()}" th:attr="name='price'" class="login-form-field" id="item"/>
+                    <input type="hidden" th:object="${Item}" th:value="${item.getSellerId().getUsername()}" th:attr="name='sellerId.username'" class="login-form-field" id="item"/>
                     <input type="submit" id="login-form-submit" value="Submit!">
                 </form>
 
