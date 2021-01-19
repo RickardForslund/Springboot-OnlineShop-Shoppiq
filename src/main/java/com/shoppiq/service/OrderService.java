@@ -1,6 +1,7 @@
 package com.shoppiq.service;
 
 import com.shoppiq.entity.Orders;
+import com.shoppiq.jms.service.RabbitMQSender;
 import com.shoppiq.repository.OrderDetailsRepository;
 import com.shoppiq.repository.OrderRepository;
 import com.shoppiq.repository.UserRepository;
@@ -15,14 +16,17 @@ public class OrderService {
     private final OrderRepository orderRepository;
     private final OrderDetailsRepository orderDetailsRepository;
     private final UserRepository userRepository;
+    private final RabbitMQSender rabbitMQSender;
 
-    public OrderService(OrderRepository orderRepository, OrderDetailsRepository orderDetailsRepository, UserRepository userRepository) {
+    public OrderService(OrderRepository orderRepository, OrderDetailsRepository orderDetailsRepository, UserRepository userRepository, RabbitMQSender rabbitMQSender) {
         this.orderRepository = orderRepository;
         this.orderDetailsRepository = orderDetailsRepository;
         this.userRepository = userRepository;
+        this.rabbitMQSender = rabbitMQSender;
     }
 
     public Orders saveOrder(Orders order) {
+        rabbitMQSender.send(order);
         return orderRepository.save(order);
     }
 

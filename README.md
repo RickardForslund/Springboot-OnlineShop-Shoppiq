@@ -1,9 +1,39 @@
 ## Shoppiq Online Marketplace
 Java EE assignment | JU19 | ITHS
-Made in winter 2020/2021 by Emily Inns, Christoffer Clausen and Rickard.
+Made in winter 2020/2021 by Emily Inns, Christoffer Clausen and Rickard Forslund.
 
 To access this project please run the Spring Boot application (ShoppiqApplication) and use the web interface. 
 By default this is found at localhost:8080/ or localhost:8080/home.
+
+### Running instructions
+
+1: Start docker on your computer.
+
+2: Create a network ``docker network crate jms-network``
+
+3: Pull RabbitMQ image ``docker pull rabbitmq:3-management``
+
+4: Build Shoppiq image
+
+4.1: Maneuver to the project source 
+
+4.2: Package the project ``mvn clean package``
+
+4.3: Make a docker image ``docker build -t shoppiq .``
+
+5: Build Jms-receiver image
+
+5.1: Repeat step 4.1 and 4.2
+
+5.2: Make a docker image ``docker build -t jms-receiver .``
+
+6: Run images on the jms-network
+
+6.1: ``docker container run -d --network jms-network --name rabbitmq -p 15672:15672 -p 5672:5672 rabbitmq:3-management``
+
+6.2: ``docker container run -d -p 8080:8080 --network jms-network --name shoppiq-app shoppiq``
+
+6.3: ``docker container run -d -p 8081:8080 --network jms-network --name receiver-app jms-receiver``
 
 ### Item Endpoints
 

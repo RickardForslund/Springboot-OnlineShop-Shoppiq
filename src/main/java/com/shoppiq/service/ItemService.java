@@ -2,6 +2,7 @@ package com.shoppiq.service;
 
 import com.shoppiq.entity.Item;
 import com.shoppiq.enums.Category;
+import com.shoppiq.jms.service.RabbitMQSender;
 import com.shoppiq.repository.ItemRepository;
 import org.springframework.stereotype.Service;
 
@@ -11,12 +12,15 @@ import java.util.Optional;
 public class ItemService {
 
     private final ItemRepository itemRepository;
+    private final RabbitMQSender rabbitMQSender;
 
-    public ItemService(ItemRepository itemRepository) {
+    public ItemService(ItemRepository itemRepository, RabbitMQSender rabbitMQSender) {
         this.itemRepository = itemRepository;
+        this.rabbitMQSender = rabbitMQSender;
     }
 
     public Item saveItem(Item item) {
+        rabbitMQSender.send(item);
         return itemRepository.save(item);
     }
 

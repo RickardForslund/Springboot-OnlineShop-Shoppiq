@@ -1,6 +1,7 @@
 package com.shoppiq.service;
 
 import com.shoppiq.entity.User;
+import com.shoppiq.jms.service.RabbitMQSender;
 import com.shoppiq.repository.UserRepository;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -11,15 +12,17 @@ import java.util.Optional;
 public class UserService {
 
     private final UserRepository userRepository;
+    private final RabbitMQSender rabbitMQSender;
     private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
-
-    public UserService(UserRepository userRepository) {
+    public UserService(UserRepository userRepository, RabbitMQSender rabbitMQSender) {
         this.userRepository = userRepository;
+        this.rabbitMQSender = rabbitMQSender;
     }
 
     public User save(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
+        rabbitMQSender.send(user);
         return userRepository.save(user);
     }
 
