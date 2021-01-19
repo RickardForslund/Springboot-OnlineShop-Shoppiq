@@ -9,7 +9,7 @@ By default this is found at localhost:8080/ or localhost:8080/home.
 
 1: Start docker on your computer.
 
-2: Create a network ``docker network crate jms-network``
+2: Create a network ``docker network create jms-network``
 
 3: Pull RabbitMQ image ``docker pull rabbitmq:3-management``
 

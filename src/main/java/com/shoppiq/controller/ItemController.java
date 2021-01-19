@@ -1,6 +1,7 @@
 package com.shoppiq.controller;
 
 import com.shoppiq.entity.Item;
+import com.shoppiq.entity.User;
 import com.shoppiq.enums.Category;
 import com.shoppiq.service.ItemService;
 import com.shoppiq.service.UserService;
@@ -33,10 +34,13 @@ public class ItemController {
     }
 
     @PostMapping("/add")
-    public String saveItem(Item item, BindingResult result, Model model) {
+    public String saveItem(Item item, String username, BindingResult result, Model model) {
         if (result.hasErrors())
             return "error";
+        User user = userService.findByUsername(username).get();
+        user.addItem(item);
         itemService.saveItem(item);
+
          return "redirect:/api/v1/item/list";
     }
     //</editor-fold>
