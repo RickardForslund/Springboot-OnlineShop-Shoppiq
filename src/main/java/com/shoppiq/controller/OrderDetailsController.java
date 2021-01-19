@@ -1,7 +1,9 @@
 package com.shoppiq.controller;
 
+import com.shoppiq.entity.Item;
 import com.shoppiq.entity.OrderDetails;
 import com.shoppiq.service.OrderDetailsService;
+import org.hibernate.criterion.Order;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -34,10 +36,20 @@ public class OrderDetailsController {
         return orderdetailsService.findById(id);
     }
 
+//    @PostMapping("/add")
+//    public String saveOrderDetails(@ModelAttribute("orderDetails") OrderDetails orderDetails, BindingResult result, Model model) {
+//        if (result.hasErrors())
+//            return "error";
+//        orderdetailsService.saveOrderDetails(orderDetails);
+//        model.addAttribute("orderDetails",orderDetails);
+//        return "orderDetails";
+//    }
+
     @PostMapping("/add")
-    public String saveOrderDetails(@ModelAttribute("orderDetails") OrderDetails orderDetails, BindingResult result, Model model) {
+    public String saveOrderDetails(Item item, int quantity, BindingResult result, Model model) {
         if (result.hasErrors())
             return "error";
+        OrderDetails orderDetails = new OrderDetails(item, quantity);
         orderdetailsService.saveOrderDetails(orderDetails);
         model.addAttribute("orderDetails",orderDetails);
         return "orderDetails";
