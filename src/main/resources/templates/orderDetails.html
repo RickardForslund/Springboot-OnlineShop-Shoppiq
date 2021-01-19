@@ -14,13 +14,16 @@
     <tr>
         <td><b>Seller :</b></td>
 
-        <td> </td>
+        <td><a th:href="@{/api/v1/user/view/{username}(username=${item.sellerId.username})}" th:text="${item.sellerId.username}"></a></td>
     </tr>
 
-    <tr th:if="${orderDetails.itemName}">
+<!--    <tr th:if="${orderDetails.itemName}">-->
+        <tr>
         <td><b>Item : </b></td>
 
-        <td><a th:href="@{/api/v1/item/view/{id}(id=${orderDetails.itemId})}" th:text="${orderDetails.itemName}"></a></td>
+        <td><a th:text="${item.name}" th:href="@{/api/v1/item/view/{id}(id=${item.id})}"></a></td>
+
+<!--        <td><a th:href="@{/api/v1/item/view/{id}(id=${orderDetails.itemId})}" th:text="${orderDetails.itemName}"></a></td>-->
     </tr>
     <tr>
         <td><b>Quantity :</b></td>
