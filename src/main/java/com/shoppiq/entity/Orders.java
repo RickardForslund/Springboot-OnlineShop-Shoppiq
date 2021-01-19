@@ -21,7 +21,7 @@ public class Orders {
 
     @ManyToOne(fetch = FetchType.LAZY)
     private User buyer;
-    @OneToMany(mappedBy = "orderId", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "orderId", cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
     private List<OrderDetails> orderDetails = new ArrayList<>();
 
     public Orders(User buyer) {

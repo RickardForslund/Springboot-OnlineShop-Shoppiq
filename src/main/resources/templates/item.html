@@ -67,7 +67,7 @@
                     <input type="hidden" th:object="${Item}" th:value="${item.getDescription()}" th:attr="name='description'" class="login-form-field" id="item"/>
                     <input type="hidden" th:object="${Item}" th:value="${item.getPrice()}" th:attr="name='price'" class="login-form-field" id="item"/>
                     <input type="hidden" th:object="${Item}" th:value="${item.getSellerId().getUsername()}" th:attr="name='sellerId.username'" class="login-form-field" id="item"/>
-                    <input type="submit" id="login-form-submit" value="Submit!">
+                    <input type="submit" id="login-form-submit" value="Buy!">
                 </form>
 
                 <a th:href="@{/home}" class="btn btn-primary">Back to Home</a>

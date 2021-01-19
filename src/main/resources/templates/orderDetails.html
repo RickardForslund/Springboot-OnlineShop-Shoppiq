@@ -37,7 +37,15 @@
     </tr>
     </table>
         <br/><br/>
-
+    <form action="#" th:action="@{/api/v1/order/add}"  method="post">
+        <input type="hidden" th:object="${orderDetails}" th:value="${orderDetails.getId()}" th:attr="name='id'" class="login-form-field" id="item"/>
+        <input type="hidden" th:object="${orderDetails}" th:value="${orderDetails.getItemId()}" th:attr="name='itemId'" class="login-form-field" id="item"/>
+        <input type="hidden" th:object="${orderDetails}" th:value="${orderDetails.getItemName()}" th:attr="name='itemName'" class="login-form-field" id="item"/>
+        <input type="hidden" th:object="${orderDetails}" th:value="${orderDetails.getQuantity()}" th:attr="name='quantity'" class="login-form-field" id="item"/>
+        <input type="hidden" th:object="${orderDetails}" th:value="${orderDetails.getPrice()}" th:attr="name='price'" class="login-form-field" id="item"/>
+        <input type="hidden" th:object="${string}" th:value="${#httpServletRequest.remoteUser}" th:attr="name='buyer'"/>
+      <input type="submit" id="login-form-submit" value="Confirm">
+    </form>
 </div>
 </body>
 </html>
