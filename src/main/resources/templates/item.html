@@ -50,13 +50,21 @@
                         <td th:text="${item.description}">...</td>
                     </tr>
 
+                    <tr>
+                        <td><b>Seller : </b></td>
+                        <td> <a th:href="@{/api/v1/user/view/{username}(username=${item.sellerId.username})}" th:text="${item.sellerId.username}"></a></td>
+                    </tr>
+
+                    <input type="hidden" th:value="${item}" th:attr="name='item'"/>
+
                 </table>
 
                 <br/><br/>
-<!--
 
+                <!--
                 <form action="#" th:object="${orderDetails}" th:action="@{/api/v1/orderdetails/add}"  method="post">
                     <input type="text" th:field="*{quantity}"  class="login-form-field" id="username" placeholder="Username">
+                    <input type="hidden" th:value="${item}" th:attr="name='item'"/>
                     <input type="submit" id="login-form-submit" value="Submit!">
                 </form>
 -->

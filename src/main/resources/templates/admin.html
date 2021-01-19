@@ -7,6 +7,7 @@
     <link rel="stylesheet" th:href="@{/styles/default.css}">
 </head>
 <body>
+<!--<span th:text ="${#authentication.getPrincipal().getUsername}"></span>-->
 <h1 th:inline="text">Welcome [[${#httpServletRequest.remoteUser}]]!</h1>
 <p>This is the admin console, restricted to administrators only.</p>
 <p>Please use your admin powers responsibly.</p>
@@ -19,6 +20,6 @@
     <input type="submit" value="Sign out">
 </form>
 <a href="/home" class="button">
-       Sign out</a>
+       Back to Home</a>
 </body>
 </html>
