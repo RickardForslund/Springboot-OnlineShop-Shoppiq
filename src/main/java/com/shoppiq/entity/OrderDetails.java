@@ -40,15 +40,19 @@ public class OrderDetails {
         this.itemId = item.getId();
         this.itemName = item.getName();
         this.quantity = quantity;
+        setPrice(item, quantity);
+    }
+
+    public void setPrice(Item item, int quantity) {
         this.price = item.getPrice() * quantity;
     }
 
-    public OrderDetails(@NotEmpty Item item, @Min(1) @NotEmpty String quantity) {
-        this.itemId = item.getId();
-        this.itemName = item.getName();
-        this.quantity = Integer.parseInt(quantity);
-        this.price = item.getPrice() * Integer.parseInt(quantity);
-    }
+    //    public OrderDetails(@NotEmpty Item item, @Min(1) @NotEmpty String quantity) {
+//        this.itemId = item.getId();
+//        this.itemName = item.getName();
+//        this.quantity = Integer.parseInt(quantity);
+//        this.price = item.getPrice() * Integer.parseInt(quantity);
+//    }
 
     @Override
     public String toString() {
@@ -58,7 +62,7 @@ public class OrderDetails {
                 ", itemName='" + itemName + '\'' +
                 ", quantity=" + quantity +
                 ", price=" + price +
-                ", orderId=" + orderId.getId() +
+//                ", orderId=" + orderId.getId() +
                 '}';
     }
 }
