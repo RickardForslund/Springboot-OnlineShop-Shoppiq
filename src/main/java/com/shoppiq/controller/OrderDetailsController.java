@@ -60,7 +60,6 @@ public class OrderDetailsController {
         OrderDetails orderDetails = new OrderDetails(item, quantity);
         orderdetailsService.saveOrderDetails(orderDetails);
         model.addAttribute("orderDetails",orderDetails);
-        System.out.println(orderDetails.toString());
         return "orderDetails";
     }
 
