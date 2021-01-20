@@ -13,21 +13,19 @@ By default this is found at localhost:8080/ or localhost:8080/home.
 
 3: Pull RabbitMQ image ``docker pull rabbitmq:3-management``
 
-4: Build Shoppiq image
+4.1: Maneuver to the Shoppiq project source, in a terminal.
 
-4.1: Maneuver to the project source 
-
-4.2: Package the project ``mvn clean package``
+4.2: Package the Shoppiq project ``mvn clean package``
 
 4.3: Make a docker image ``docker build -t shoppiq .``
 
-5: Build Jms-receiver image
+5.1: Maneuver to the Jms-Server project source, in a terminal.
 
-5.1: Repeat step 4.1 and 4.2
+5.1: Package the Jms-Server project ``mvn clean package``
 
 5.2: Make a docker image ``docker build -t jms-receiver .``
 
-6: Run images on the jms-network
+6: Run images on the jms-network (make sure to run the rabbitmq image first)
 
 6.1: ``docker container run -d --network jms-network --name rabbitmq -p 15672:15672 -p 5672:5672 rabbitmq:3-management``
 
