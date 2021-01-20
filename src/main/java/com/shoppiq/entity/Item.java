@@ -69,13 +69,32 @@ public class Item {
                 category == item.category;
     }
 
-    @Override
-    public String toString() {
-        return "Product: " + name + '\t' +
-                "Price: " + price + '\t' +
-                '\b' +
-                "Quantity: " + quantity + '\t' +
-                "Description: " + description + '\t' +
-                "Category: " + category;
+    @JsonIgnore
+    public User getSellerId() {
+        return sellerId;
     }
+
+
+
+        @Override
+    public String toString() {
+        return "Item{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                ", quantity=" + quantity +
+                ", description='" + description + '\'' +
+                ", category=" + category +
+                '}';
+    }
+
+//        @Override
+//    public String toString() {
+//        return "Product: " + name + '\t' +
+//                "Price: " + price + '\t' +
+//                '\b' +
+//                "Quantity: " + quantity + '\t' +
+//                "Description: " + description + '\t' +
+//                "Category: " + category;
+//    }
 }
