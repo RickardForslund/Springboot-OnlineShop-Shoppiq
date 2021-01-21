@@ -43,7 +43,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/", "/home", "/login", "api/v1/user/create").permitAll() //TODO remove /api/v1/item/search** from permitAll
-                .antMatchers("/api/v1/item/view/**", "/api/v1/item/item/**", "/api/v1/item/search").hasRole("USER")
+                .antMatchers("/api/v1/item/view/**", "/api/v1/item/item/**", "/api/v1/item/search", "/api/v1/item/search/name").hasRole("USER")
                 .antMatchers("/admin", "/api/v1/item/list", "/api/v1/user/list").hasRole("ADMIN")
 //                .anyRequest().authenticated()
                 .and()
